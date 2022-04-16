@@ -1,0 +1,31 @@
+<div class="col-md-6 offset-md-3">
+  <h3> Exam information </h3>
+
+  <form>
+    <div class="form-group">
+      <label> Student </label>
+      <input type="text" class="form-control" id="email" readonly
+             [(ngModel)]="exam.studentDTO.userDTO.email" name="email" />
+    </div>
+    <div class="form-group">
+      <label> Subject </label>
+      <input type="text" class="form-control" id="subject" readonly
+             [(ngModel)]="exam.examScheduleDTO.subjectDTO.name" name="subject" />
+    </div>
+    <div class="form-group">
+      <label> Time of exam </label>
+      <input type="datetime-local" class="form-control" id="time"
+             [(ngModel)]="exam.examScheduleDTO.timeOfExam" name="time" />
+    </div>
+    <div class="form-group">
+      <label> Place </label>
+      <input type="text" class="form-control" id="place"
+             [(ngModel)]="exam.examScheduleDTO.place" name="place" />
+    </div>
+    <div class="form-group">
+      <label> Points </label>
+      <input type="number" class="form-control" id="points"
+             [(ngModel)]="exam.points== null ? 0 : exam.points" name="points" />
+    </div>
+  </form>
+</div>
