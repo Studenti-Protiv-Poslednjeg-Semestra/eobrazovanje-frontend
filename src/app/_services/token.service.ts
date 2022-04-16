@@ -16,6 +16,13 @@ export class TokenService {
     localStorage.removeItem('TOKEN');
   }
 
+  getUserId(): number {
+    let token: string = localStorage.getItem('TOKEN') as string;
+    let decoded_token = this.decodeToken(token);
+    let userId = decoded_token.userId;
+    return userId;
+  }
+
   decodeToken(token: string): any {
     try {
       return jwt_decode(token);

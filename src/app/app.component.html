@@ -1,6 +1,9 @@
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
   <ul class="navbar-nav">
     <li class="nav-item" *ngIf="localStorageItem('TOKEN') && localStorageItem('STATE')">
+      <a routerLink="exams" routerLinkActive="active" class="nav-link">Exams</a>
+    </li>
+    <li class="nav-item" *ngIf="localStorageItem('TOKEN') && localStorageItem('STATE')">
       <a style="cursor: pointer" (click)="onLogoutClick()" class="nav-link">Logout</a>
     </li>
   </ul>
