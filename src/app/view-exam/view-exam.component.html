@@ -1,7 +1,7 @@
 <div class="col-md-6 offset-md-3">
   <h3> Exam information </h3>
 
-  <form>
+  <form (ngSubmit)="onEdit()">
     <div class="form-group">
       <label> Student </label>
       <input type="text" class="form-control" id="email" readonly
@@ -12,20 +12,39 @@
       <input type="text" class="form-control" id="subject" readonly
              [(ngModel)]="exam.examScheduleDTO.subjectDTO.name" name="subject" />
     </div>
-    <div class="form-group">
+    <div class="form-group" *ngIf="!editable">
+      <label> Time of exam </label>
+      <input type="datetime-local" class="form-control" id="time" readonly
+             [(ngModel)]="exam.examScheduleDTO.timeOfExam" name="time" />
+    </div>
+    <div class="form-group" *ngIf="editable">
       <label> Time of exam </label>
       <input type="datetime-local" class="form-control" id="time"
              [(ngModel)]="exam.examScheduleDTO.timeOfExam" name="time" />
     </div>
-    <div class="form-group">
+    <div class="form-group" *ngIf="!editable">
+      <label> Place </label>
+      <input type="text" class="form-control" id="place" readonly
+             [(ngModel)]="exam.examScheduleDTO.place" name="place" />
+    </div>
+    <div class="form-group" *ngIf="editable">
       <label> Place </label>
       <input type="text" class="form-control" id="place"
              [(ngModel)]="exam.examScheduleDTO.place" name="place" />
     </div>
-    <div class="form-group">
+    <div class="form-group" *ngIf="!editable">
+      <label> Points </label>
+      <input type="number" class="form-control" id="points" readonly
+             [(ngModel)]="exam.points== null ? 0 : exam.points" name="points" />
+    </div>
+    <div class="form-group" *ngIf="editable">
       <label> Points </label>
       <input type="number" class="form-control" id="points"
              [(ngModel)]="exam.points== null ? 0 : exam.points" name="points" />
     </div>
+    <button *ngIf="editable"
+            class="btn btn-success" type="submit">
+      Edit exam data
+    </button>
   </form>
 </div>
