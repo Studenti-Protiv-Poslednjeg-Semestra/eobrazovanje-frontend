@@ -10,6 +10,7 @@ import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ViewExamComponent } from './view-exam/view-exam.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ExamListFilteredComponent } from './exam-list-filtered/exam-list-filtered.component';
+import { CreateExamScheduleComponent } from './create-exam-schedule/create-exam-schedule.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ExamListFilteredComponent } from './exam-list-filtered/exam-list-filter
     ExamListComponent,
     LoginComponent,
     ViewExamComponent,
-    ExamListFilteredComponent
+    ExamListFilteredComponent,
+    CreateExamScheduleComponent
   ],
   imports: [
     BrowserModule,

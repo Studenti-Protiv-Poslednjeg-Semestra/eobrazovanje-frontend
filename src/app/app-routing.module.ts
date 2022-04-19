@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CreateExamScheduleComponent } from './create-exam-schedule/create-exam-schedule.component';
 import { ExamListFilteredComponent } from './exam-list-filtered/exam-list-filtered.component';
 import { ExamListComponent } from './exam-list/exam-list.component';
 import { LoginComponent } from './login/login.component';
@@ -36,6 +37,13 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       role: ['ROLE_ADMIN','ROLE_TEACHER']
+    }
+  },
+  {
+    path: "exam_schedules/create", component: CreateExamScheduleComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: 'ROLE_ADMIN'
     }
   },
   {
