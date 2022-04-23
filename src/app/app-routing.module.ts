@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CreateExamApplicationComponent } from './create-exam-application/create-exam-application.component';
 import { CreateExamScheduleComponent } from './create-exam-schedule/create-exam-schedule.component';
 import { ExamListFilteredComponent } from './exam-list-filtered/exam-list-filtered.component';
 import { ExamListComponent } from './exam-list/exam-list.component';
@@ -10,6 +11,13 @@ import { AuthGuard } from './_helpers/auth.guard';
 const routes: Routes = [
   // redirect to somewhere if path is empty
   //{ path: '', redirectTo: '', pathMatch: 'full' },
+  {
+    path: "exams/application", component: CreateExamApplicationComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ['ROLE_ADMIN', 'ROLE_STUDENT']
+    }
+  },
   {
     path: 'exams', component: ExamListComponent,
     canActivate: [AuthGuard],

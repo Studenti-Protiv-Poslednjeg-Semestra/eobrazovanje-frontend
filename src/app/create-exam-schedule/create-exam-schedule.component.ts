@@ -26,7 +26,6 @@ export class CreateExamScheduleComponent implements OnInit {
     this.subjectService.getAllSubjects().subscribe(
       data => {
         this.subjects = data;
-        this.onChangeSubject(this.subjects[0]);
       },
       error => {
         console.log(error);
@@ -36,7 +35,6 @@ export class CreateExamScheduleComponent implements OnInit {
     this.examinationPeriodService.getAllExamPeriods().subscribe(
       data => {
         this.examinationPeriods = data;
-        this.onChangeExaminationPeriod(this.examinationPeriods[0]);
       },
       error => {
         console.log(error);

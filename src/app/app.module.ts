@@ -11,6 +11,7 @@ import { ViewExamComponent } from './view-exam/view-exam.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ExamListFilteredComponent } from './exam-list-filtered/exam-list-filtered.component';
 import { CreateExamScheduleComponent } from './create-exam-schedule/create-exam-schedule.component';
+import { CreateExamApplicationComponent } from './create-exam-application/create-exam-application.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { CreateExamScheduleComponent } from './create-exam-schedule/create-exam-
     LoginComponent,
     ViewExamComponent,
     ExamListFilteredComponent,
-    CreateExamScheduleComponent
+    CreateExamScheduleComponent,
+    CreateExamApplicationComponent
   ],
   imports: [
     BrowserModule,

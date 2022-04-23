@@ -34,5 +34,12 @@ export class ExamService {
     return this.httpClient.put<Exam>(`${this.baseURL}/${id}`, exam);
   }
 
+  createExamApplication(studentId: number, examScheduleId: number): Observable<Exam> {
+    return this.httpClient.post<Exam>(`${this.baseURL}/application`, {
+      studentId: studentId,
+      examScheduleId: examScheduleId
+    });
+  }
+
 }
 

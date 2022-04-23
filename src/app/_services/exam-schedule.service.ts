@@ -16,4 +16,8 @@ export class ExamScheduleService {
     return this.httpClient.post<ExamSchedule>(`${this.baseURL}`, examSchedule);
   }
 
+  getAllExamSchedules(): Observable<ExamSchedule[]> {
+    return this.httpClient.get<ExamSchedule[]>(`${this.baseURL}`);
+  }
+
 }

@@ -1,10 +1,6 @@
-button{
-    float:right;
-}
-
 select {
-  width: 80%;
-  overflow: scroll;
+    width:80%;
+    overflow: scroll;
 }
 
 select option:checked {
@@ -12,4 +8,3 @@ select option:checked {
   background-color: #0d6efd;
   color: #0d6efd !important;
 }
-
