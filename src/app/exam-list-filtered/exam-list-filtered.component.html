@@ -1,5 +1,11 @@
 <div class="container">
   <h2>Exam list for {{title}}</h2>
+  <div id="viewType" *ngIf="examType=='finished'">
+    <select>
+      <option (click)="onChangeExamView('passed')">Passed</option>
+      <option (click)="onChangeExamView('unpassed')">Unpassed</option>
+    </select>
+  </div>
   <hr />
   <div id="pagination">
     <pagination-controls (pageChange)="onChangePage($event)"></pagination-controls>
@@ -13,6 +19,7 @@
       </option>
     </select>
   </div>
+
   <table class="table table-striped">
     <thead>
       <tr>
@@ -30,7 +37,7 @@
                                                       totalItems: totalElements }">
         <td *ngIf="filterType != 'syllabus'">{{ exam.studentDTO.userDTO.firstName }}</td>
         <td *ngIf="filterType == 'syllabus'">
-          <a routerLink="/exams/student/{{exam.studentDTO.id}}" routerLinkActive="active">
+          <a routerLink="/exams/student/{{exam.studentDTO.userDTO.id}}" routerLinkActive="active">
             {{ exam.studentDTO.userDTO.firstName }}
           </a>
         </td>
@@ -45,7 +52,12 @@
           </a>
         </td>
 
-        <td><button routerLink="/exams/{{exam.id}}" routerLinkActive="active" class="btn btn-info">Show data</button></td>
+        <td class="buttons"><button routerLink="/exams/view/{{exam.id}}" routerLinkActive="active" class="btn btn-info">Show data</button></td>
+        <td class="buttons" *ngIf="examType=='unfinished' && localStorageItem('ROLE') != 'ROLE_TEACHER'">
+          <button (click)="onCancelExam(exam.id)" class="btn btn-danger">
+            Cancel exam
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>

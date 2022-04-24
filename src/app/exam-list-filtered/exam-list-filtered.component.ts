@@ -12,17 +12,19 @@ import { TokenService } from '../_services/token.service';
 export class ExamListFilteredComponent implements OnInit {
   pageOfExams: Array<any> = [];
   currentPage: number = 1;
-  itemsPerPage: number = 2;
+  itemsPerPage: number = 5;
   totalElements!: number;
   routeSub!: Subscription;
   filterId!: number;
   filterType: string = '';
   title: string = '';
+  examType: string = '';
+  viewType: string = 'passed';
 
   pageSizes = [
-    { id: 1, size: 2 },
-    { id: 2, size: 5 },
-    { id: 3, size: 10 }
+    { id: 1, size: 5 },
+    { id: 2, size: 10 },
+    { id: 3, size: 20 }
   ];
 
   constructor(private route: ActivatedRoute,
@@ -31,7 +33,8 @@ export class ExamListFilteredComponent implements OnInit {
 
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
-      this.filterId = params['id']
+      this.filterId = params['id'];
+      this.examType = params['examType'];
     });
 
     let url = this.router.routerState.snapshot.url;
@@ -52,6 +55,10 @@ export class ExamListFilteredComponent implements OnInit {
     this.routeSub.unsubscribe();
   }
 
+  localStorageItem(id: string): any {
+    return localStorage.getItem(id);
+  }
+
   private getExams(page: number) {
     if (this.filterType == 'student') {
       this.getExamsForStudent(this.filterId, page);
@@ -62,16 +69,16 @@ export class ExamListFilteredComponent implements OnInit {
   }
 
   private getExamsForStudent(studentId: number, page: number) {
-    this.examService.getExamListForStudent(studentId, page, this.itemsPerPage).subscribe((response: any) => {
+    this.examService.getExamListForStudent(studentId, page, this.itemsPerPage, this.examType, this.viewType).subscribe((response: any) => {
       this.pageOfExams = response.content;
-      this.totalElements = response.totalElements;
+      this.totalElements = response.content.size;
     });
   }
 
   private getExamsForSyllabus(syllabusId: number, page: number) {
-    this.examService.getExamListForSyllabus(syllabusId, page, this.itemsPerPage).subscribe((response: any) => {
+    this.examService.getExamListForSyllabus(syllabusId, page, this.itemsPerPage, this.examType, this.viewType).subscribe((response: any) => {
       this.pageOfExams = response.content;
-      this.totalElements = response.totalElements;
+      this.totalElements = response.content.size;
     });
   }
 
@@ -89,5 +96,15 @@ export class ExamListFilteredComponent implements OnInit {
     this.onChangePage(1);
   }
 
+  onChangeExamView(viewType: string) {
+    this.viewType = viewType;
+    this.onChangePage(1);
+  }
+
+  onCancelExam(examId: any) {
+    this.examService.cancelExam(examId).subscribe((response: any) => {
+      this.getExams(0);
+    });
+  }
 
 }

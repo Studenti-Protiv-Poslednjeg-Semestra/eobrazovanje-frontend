@@ -4,6 +4,11 @@ th,td{
 button{
     color:white;
 }
+
+.buttons{
+    width:13%;
+}
+
 #pagination {
     float: left;
     width: 85%;
@@ -12,3 +17,4 @@ button{
     float: right;
     width: 15%;
 }
+

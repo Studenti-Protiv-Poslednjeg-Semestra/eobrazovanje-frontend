@@ -19,7 +19,30 @@ const routes: Routes = [
     }
   },
   {
-    path: 'exams', component: ExamListComponent,
+    path: "exams/cancellation", component: CreateExamApplicationComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ['ROLE_STUDENT']
+    }
+  },
+  {
+    path: "exams/:examType/syllabus/:id", component: ExamListFilteredComponent,
+    canActivate: [AuthGuard],
+    pathMatch: 'full',
+    data: {
+      role: ['ROLE_ADMIN', 'ROLE_TEACHER']
+    }
+  },
+  {
+    path: "exams/:examType/student/:id", component: ExamListFilteredComponent,
+    canActivate: [AuthGuard],
+    pathMatch: 'full',
+    data: {
+      role: ['ROLE_ADMIN', 'ROLE_TEACHER']
+    }
+  },
+  {
+    path: 'exams/:examType', component: ExamListComponent,
     canActivate: [AuthGuard],
     pathMatch: 'full',
     data: {
@@ -27,24 +50,10 @@ const routes: Routes = [
     }
   },
   {
-    path: 'exams/:id', component: ViewExamComponent,
+    path: 'exams/view/:id', component: ViewExamComponent,
     canActivate: [AuthGuard],
     data: {
       role: ['ROLE_ADMIN','ROLE_TEACHER','ROLE_STUDENT']
-    }
-  },
-  {
-    path: "exams/student/:id", component: ExamListFilteredComponent,
-    canActivate: [AuthGuard],
-    data: {
-      role: ['ROLE_ADMIN','ROLE_TEACHER']
-    }
-  },
-  {
-    path: "exams/syllabus/:id", component: ExamListFilteredComponent,
-    canActivate: [AuthGuard],
-    data: {
-      role: ['ROLE_ADMIN','ROLE_TEACHER']
     }
   },
   {

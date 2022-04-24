@@ -12,36 +12,43 @@
       <input type="text" class="form-control" id="subject" readonly
              [(ngModel)]="exam.examScheduleDTO.subjectDTO.name" name="subject" />
     </div>
-    <div class="form-group" *ngIf="!editable">
+
+    <div class="form-group" *ngIf="!editable || finished">
       <label> Time of exam </label>
       <input type="datetime-local" class="form-control" id="time" readonly
              [(ngModel)]="exam.examScheduleDTO.timeOfExam" name="time" />
     </div>
-    <div class="form-group" *ngIf="editable">
+    <div class="form-group" *ngIf="editable && !finished">
       <label> Time of exam </label>
-      <input type="datetime-local" class="form-control" id="time"
-             [(ngModel)]="exam.examScheduleDTO.timeOfExam" name="time" />
+      <br />
+      <select>
+        <option *ngFor="let examSchedule of examSchedules" [ngValue]="examSchedule"
+                [selected]="examSchedule.id==exam.examScheduleDTO.id"
+                (click)="onChangeExamSchedule(examSchedule)">
+          Time - '{{examSchedule.timeOfExam.replace('T',' ')}}', 
+          at - '{{examSchedule.place}}'
+        </option>
+      </select>
     </div>
-    <div class="form-group" *ngIf="!editable">
+
+    <div class="form-group">
       <label> Place </label>
       <input type="text" class="form-control" id="place" readonly
              [(ngModel)]="exam.examScheduleDTO.place" name="place" />
     </div>
-    <div class="form-group" *ngIf="editable">
-      <label> Place </label>
-      <input type="text" class="form-control" id="place"
-             [(ngModel)]="exam.examScheduleDTO.place" name="place" />
-    </div>
+
+
     <div class="form-group" *ngIf="!editable">
       <label> Points </label>
       <input type="number" class="form-control" id="points" readonly
-             [(ngModel)]="exam.points== null ? 0 : exam.points" name="points" />
+             [(ngModel)]="exam.points" name="points" />
     </div>
     <div class="form-group" *ngIf="editable">
       <label> Points </label>
       <input type="number" class="form-control" id="points"
-             [(ngModel)]="exam.points== null ? 0 : exam.points" name="points" />
+             [(ngModel)]="exam.points" name="points" />
     </div>
+
     <button *ngIf="editable"
             class="btn btn-success" type="submit">
       Edit exam data

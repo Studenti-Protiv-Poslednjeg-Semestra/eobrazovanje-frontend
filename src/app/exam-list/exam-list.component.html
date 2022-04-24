@@ -1,5 +1,11 @@
 <div class="container">
-	<h2>All exams</h2>
+	<h2>All {{examType}} exams</h2>
+	<div id="viewType" *ngIf="examType=='finished'">
+		<select>
+			<option (click)="onChangeExamView('passed')">Passed</option>
+			<option (click)="onChangeExamView('unpassed')">Unpassed</option>
+		</select>
+	</div>
 	<hr />
 	<div id="pagination">
 		<pagination-controls (pageChange)="onChangePage($event)"></pagination-controls>
@@ -13,6 +19,7 @@
 			</option>
 		</select>
 	</div>
+
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -30,7 +37,7 @@
                                                       totalItems: totalElements }">
 				<td *ngIf="localStorageItem('ROLE') == 'ROLE_STUDENT'">{{ exam.studentDTO.userDTO.firstName }}</td>
 				<td *ngIf="localStorageItem('ROLE') != 'ROLE_STUDENT'">
-					<a routerLink="/exams/student/{{exam.studentDTO.id}}" routerLinkActive="active">
+					<a routerLink="/exams/{{examType}}/student/{{exam.studentDTO.userDTO.id}}" routerLinkActive="active">
 						{{ exam.studentDTO.userDTO.firstName }}
 					</a>
 				</td>
@@ -40,12 +47,17 @@
 
 				<td *ngIf="localStorageItem('ROLE') == 'ROLE_STUDENT'">{{ exam.examScheduleDTO.subjectDTO.syllabusDTO.id }}</td>
 				<td *ngIf="localStorageItem('ROLE') != 'ROLE_STUDENT'">
-					<a routerLink="/exams/syllabus/{{exam.examScheduleDTO.subjectDTO.syllabusDTO.id}}" routerLinkActive="active">
+					<a routerLink="/exams/{{examType}}/syllabus/{{exam.examScheduleDTO.subjectDTO.syllabusDTO.id}}" routerLinkActive="active">
 						{{ exam.examScheduleDTO.subjectDTO.syllabusDTO.id }}
 					</a>
 				</td>
 
-				<td><button routerLink="/exams/{{exam.id}}" routerLinkActive="active" class="btn btn-info">Show data</button></td>
+				<td class="buttons"><button routerLink="/exams/view/{{exam.id}}" routerLinkActive="active" class="btn btn-info">View exam data</button></td>
+				<td class="buttons" *ngIf="examType=='unfinished' && localStorageItem('ROLE') != 'ROLE_TEACHER'">
+					<button (click)="onCancelExam(exam.id)" class="btn btn-danger">
+						Cancel exam
+					</button>
+				</td>
 			</tr>
 		</tbody>
 	</table>

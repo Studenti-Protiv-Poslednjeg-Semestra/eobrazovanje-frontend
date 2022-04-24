@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Exam } from '../_models/exam';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { ExamService } from '../_services/exam.service';
 import { TokenService } from '../_services/token.service';
 
@@ -11,22 +11,33 @@ import { TokenService } from '../_services/token.service';
 })
 export class ExamListComponent implements OnInit {
   pageOfExams: Array<any> = [];
+  routeSub!: Subscription;
   currentPage: number = 1;
-  itemsPerPage: number = 2;
+  itemsPerPage: number = 5;
   totalElements!: number;
-
+  examType: string = '';
+  viewType: string = 'passed';
 
   pageSizes = [
-    { id: 1, size: 2 },
-    { id: 2, size: 5 },
-    { id: 3, size: 10 }
+    { id: 1, size: 5 },
+    { id: 2, size: 10 },
+    { id: 3, size: 20 }
   ];
 
-  constructor(private examService: ExamService,
+  constructor(private route: ActivatedRoute,
+    private examService: ExamService,
     private tokenService: TokenService) { }
 
   ngOnInit(): void {
-    this.getExams(0);
+    this.routeSub = this.route.params.subscribe(params => {
+      this.examType = params['examType'];
+      this.getExams(0);
+    });
+  }
+
+  // unsubscribe to prevent memory leaks
+  ngOnDestroy() {
+    this.routeSub.unsubscribe();
   }
 
   localStorageItem(id: string): any {
@@ -36,9 +47,10 @@ export class ExamListComponent implements OnInit {
   private getExams(page: number) {
     let role = localStorage.getItem('ROLE') as string;
     if (['ROLE_ADMIN', 'ROLE_TEACHER'].includes(role)) {
-      this.examService.getExamList(page, this.itemsPerPage).subscribe((response: any) => {
+      this.examService.getExamList(page, this.itemsPerPage, this.examType, this.viewType).subscribe((response: any) => {
         this.pageOfExams = response.content;
-        this.totalElements = response.totalElements;
+        this.totalElements = response.content.size;
+        console.log(response);
       });
     }
     else if (role == 'ROLE_STUDENT') {
@@ -48,9 +60,9 @@ export class ExamListComponent implements OnInit {
 
   private getExamsForStudent(page: number) {
     let studentId = this.tokenService.getUserId();
-    this.examService.getExamListForStudent(studentId, page, this.itemsPerPage).subscribe((response: any) => {
+    this.examService.getExamListForStudent(studentId, page, this.itemsPerPage, this.examType, this.viewType).subscribe((response: any) => {
       this.pageOfExams = response.content;
-      this.totalElements = response.totalElements;
+      this.totalElements = response.content.size;
     });
   }
 
@@ -72,6 +84,17 @@ export class ExamListComponent implements OnInit {
   onPageSizeChange(pageSize: number) {
     this.itemsPerPage = pageSize;
     this.onChangePage(1);
+  }
+
+  onChangeExamView(viewType: string) {
+    this.viewType = viewType;
+    this.onChangePage(1);
+  }
+
+  onCancelExam(examId: any) {
+    this.examService.cancelExam(examId).subscribe((response: any) => {
+      this.getExams(0);
+    });
   }
 
 }

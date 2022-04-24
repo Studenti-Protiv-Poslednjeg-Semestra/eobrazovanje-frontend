@@ -1,4 +1,4 @@
-<div class="container">
+<div class="col-md-5 offset-md-3">
   <h2>Exam registration</h2>
   <form (ngSubmit)="onSubmit()">
     <div id="students" *ngIf="role=='ROLE_ADMIN'">
@@ -7,19 +7,22 @@
       <select size=5>
         <option *ngFor="let student of students" [ngValue]="student"
                 (click)="onChangeStudent(student)">
-          {{student.userDTO.firstName}}, {{student.userDTO.lastName}}
+          First name - '{{student.userDTO.firstName}}',
+          Last name - '{{student.userDTO.lastName}}'
         </option>
       </select>
     </div>
 
 
     <div id="examSchedules">
-      Subject
+      Exam schedule
       <br />
       <select size=5>
         <option *ngFor="let examSchedule of examSchedules" [ngValue]="examSchedule"
                 (click)="onChangeExamSchedule(examSchedule)">
-          {{examSchedule.subjectDTO.name}}, {{examSchedule.timeOfExam}}
+          Subject - '{{examSchedule.subjectDTO.name}}',
+          Place - '{{examSchedule.place}}',
+          Time - '{{examSchedule.timeOfExam.replace('T',' ')}}'
         </option>
       </select>
     </div>

@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Exam } from '../_models/exam';
@@ -11,19 +11,28 @@ export class ExamService {
   private baseURL = "http://localhost:8080/ss/exams";
   constructor(private httpClient: HttpClient ) { }
 
-  getExamList(page: number, itemsPerPage: number) {
+  getExamList(page: number, itemsPerPage: number, examType: string, viewType: string) {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("viewType", viewType);
+
     return this.httpClient.get(`${this.baseURL}` + '?page=' + page +
-      "&" + "itemsPerPage=" + itemsPerPage);
+      "&" + "itemsPerPage=" + itemsPerPage + "&" + "examType=" + examType, { params: queryParams });
   }
 
-  getExamListForStudent(studentId: number, page: number, itemsPerPage: number) {
+  getExamListForStudent(studentId: number, page: number, itemsPerPage: number, examType: string, viewType: string) {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("viewType", viewType);
+
     return this.httpClient.get(`${this.baseURL}/student/${studentId}` + '?page=' + page +
-      "&" + "itemsPerPage=" + itemsPerPage);
+      "&" + "itemsPerPage=" + itemsPerPage + "&" + "examType=" + examType, { params: queryParams });
   }
 
-  getExamListForSyllabus(syllabusId: number, page: number, itemsPerPage: number) {
+  getExamListForSyllabus(syllabusId: number, page: number, itemsPerPage: number, examType: string, viewType: string) {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("viewType", viewType);
+
     return this.httpClient.get(`${this.baseURL}/syllabus/${syllabusId}` + '?page=' + page +
-      "&" + "itemsPerPage=" + itemsPerPage);
+      "&" + "itemsPerPage=" + itemsPerPage + "&" + "examType=" + examType, { params: queryParams });
   }
 
   getExamById(id: number): Observable<HttpResponse<Exam>> {
@@ -39,6 +48,10 @@ export class ExamService {
       studentId: studentId,
       examScheduleId: examScheduleId
     });
+  }
+
+  cancelExam(examId: number) {
+    return this.httpClient.delete(`${this.baseURL}/${examId}`);
   }
 
 }

@@ -48,7 +48,7 @@ export class CreateExamScheduleComponent implements OnInit {
     
     this.examScheduleService.createExamSchedule(this.examSchedule).subscribe(
       data => {
-        this.router.navigate(['/exam_schedules']);
+        this.router.navigate(['/exams/application']);
       },
       error => {
         console.log(error);

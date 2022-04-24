@@ -6,6 +6,11 @@ button {
   color: white;
 }
 
+.buttons {
+  width: 13%;
+}
+
+
 #pagination {
   float: left;
   width: 85%;

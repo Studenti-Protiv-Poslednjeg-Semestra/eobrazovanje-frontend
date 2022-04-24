@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ExamSchedule } from '../_models/exam-schedule';
@@ -16,8 +16,20 @@ export class ExamScheduleService {
     return this.httpClient.post<ExamSchedule>(`${this.baseURL}`, examSchedule);
   }
 
-  getAllExamSchedules(): Observable<ExamSchedule[]> {
-    return this.httpClient.get<ExamSchedule[]>(`${this.baseURL}`);
+  getAllExamSchedules(studentId: any): Observable<ExamSchedule[]> {
+    if (studentId != null) {
+      let queryParams = new HttpParams();
+      queryParams = queryParams.append("studentId", studentId);
+
+      return this.httpClient.get<ExamSchedule[]>(`${this.baseURL}`, { params: queryParams });
+    }
+    else {
+      return this.httpClient.get<ExamSchedule[]>(`${this.baseURL}`);
+    }
+  }
+
+  getAllExamSchedulesForSubject(subjectId: any): Observable<ExamSchedule[]> {
+    return this.httpClient.get<ExamSchedule[]>(`${this.baseURL}/subject/${subjectId}`);
   }
 
 }

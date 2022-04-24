@@ -3,7 +3,7 @@ button{
 }
 
 select {
-  width: 80%;
+  width: 100%;
   overflow: scroll;
 }
 
@@ -13,3 +13,6 @@ select option:checked {
   color: #0d6efd !important;
 }
 
+form{
+    width: 80%;
+}

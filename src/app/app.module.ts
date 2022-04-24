@@ -4,7 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ExamListComponent } from './exam-list/exam-list.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ViewExamComponent } from './view-exam/view-exam.component';
@@ -22,13 +22,14 @@ import { CreateExamApplicationComponent } from './create-exam-application/create
     ViewExamComponent,
     ExamListFilteredComponent,
     CreateExamScheduleComponent,
-    CreateExamApplicationComponent
+    CreateExamApplicationComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     NgxPaginationModule
   ],
   providers: [

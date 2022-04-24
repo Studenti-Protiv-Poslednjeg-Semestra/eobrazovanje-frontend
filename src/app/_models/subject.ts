@@ -5,6 +5,6 @@ export class Subject {
   name!: string;
   semester!: number;
   description!: string;
-  ECTS!: number;
+  ects!: number;
   syllabusDTO: Syllabus = new Syllabus();
 }

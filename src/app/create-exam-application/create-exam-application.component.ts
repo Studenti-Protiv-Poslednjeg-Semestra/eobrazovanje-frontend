@@ -26,17 +26,9 @@ export class CreateExamApplicationComponent implements OnInit {
     private tokenService: TokenService) { }
 
   ngOnInit(): void {
-    this.examScheduleService.getAllExamSchedules().subscribe(
-      data => {
-        this.examSchedules = data;
-      },
-      error => {
-        console.log(error);
-      }
-    )
-
     // if authorized user is admin then he can choose for
-    // which student to register exam
+    // which student to register exam, fetching examSchedules
+    // is only done after selecting student
     const role = localStorage.getItem('ROLE');
     if (role == 'ROLE_ADMIN') {
       this.role = role;
@@ -51,17 +43,29 @@ export class CreateExamApplicationComponent implements OnInit {
     }
     // if authorized user is student then he can only
     // register exam for himself, no need for fetching
-    // other students
+    // other students, also fetching examSchedules for
+    // students
     else if (role == 'ROLE_STUDENT') {
+      this.getExamSchedules(null);
       this.studentId = this.tokenService.getUserId();
     }
-
   }
 
-  onSubmit = async () => {
+  getExamSchedules(studentId: any) {
+    this.examScheduleService.getAllExamSchedules(studentId).subscribe(
+      data => {
+        this.examSchedules = data;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  onSubmit() {
     this.examService.createExamApplication(this.studentId, this.examScheduleId).subscribe(
       data => {
-        this.router.navigate(['/exams']);
+        this.router.navigate(['/exams/unfinished']);
       },
       error => {
         console.log(error);
@@ -70,6 +74,7 @@ export class CreateExamApplicationComponent implements OnInit {
   }
 
   onChangeStudent(student: Student) {
+    this.getExamSchedules(student.userDTO.id);
     this.studentId = student.userDTO.id;
   }
 
