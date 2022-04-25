@@ -17,6 +17,7 @@ export class ExamListComponent implements OnInit {
   totalElements!: number;
   examType: string = '';
   viewType: string = 'passed';
+  resultMsg: string = '';
 
   pageSizes = [
     { id: 1, size: 5 },
@@ -50,7 +51,12 @@ export class ExamListComponent implements OnInit {
       this.examService.getExamList(page, this.itemsPerPage, this.examType, this.viewType).subscribe((response: any) => {
         this.pageOfExams = response.content;
         this.totalElements = response.content.size;
-        console.log(response);
+        if (response.totalElements == 0) {
+          this.resultMsg = 'There are no exams';
+        }
+        else {
+          this.resultMsg = '';
+        }
       });
     }
     else if (role == 'ROLE_STUDENT') {
@@ -63,6 +69,12 @@ export class ExamListComponent implements OnInit {
     this.examService.getExamListForStudent(studentId, page, this.itemsPerPage, this.examType, this.viewType).subscribe((response: any) => {
       this.pageOfExams = response.content;
       this.totalElements = response.content.size;
+      if (response.totalElements == 0) {
+        this.resultMsg = 'You have no exams';
+      }
+      else {
+        this.resultMsg = '';
+      }
     });
   }
 

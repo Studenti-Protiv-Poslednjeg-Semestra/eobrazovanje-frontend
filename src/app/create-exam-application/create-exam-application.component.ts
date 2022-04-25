@@ -18,6 +18,7 @@ export class CreateExamApplicationComponent implements OnInit {
   role: string = '';
   studentId!: number;
   examScheduleId!: number;
+  resultMsg: string = '';
 
   constructor(private examScheduleService: ExamScheduleService,
     private studentService: StudentService,
@@ -55,6 +56,9 @@ export class CreateExamApplicationComponent implements OnInit {
     this.examScheduleService.getAllExamSchedules(studentId).subscribe(
       data => {
         this.examSchedules = data;
+        if (this.examSchedules.length == 0) {
+          this.resultMsg = 'There are no available subjects for registration';
+        }
       },
       error => {
         console.log(error);
@@ -63,22 +67,35 @@ export class CreateExamApplicationComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.studentId == null) {
+      this.resultMsg = 'Please select student';
+      return;
+    }
+    if (this.examScheduleId == null) {
+      this.resultMsg = 'Please select exam schedule';
+      return;
+    }
+    if (this.examSchedules.length == 0) {
+      return;
+    }
     this.examService.createExamApplication(this.studentId, this.examScheduleId).subscribe(
       data => {
         this.router.navigate(['/exams/unfinished']);
       },
       error => {
-        console.log(error);
+        console.log(error.status);
       }
     );
   }
 
   onChangeStudent(student: Student) {
+    this.resultMsg = '';
     this.getExamSchedules(student.userDTO.id);
     this.studentId = student.userDTO.id;
   }
 
   onChangeExamSchedule(examSchedule: ExamSchedule) {
+    this.resultMsg = '';
     this.examScheduleId = examSchedule.id;
   }
 

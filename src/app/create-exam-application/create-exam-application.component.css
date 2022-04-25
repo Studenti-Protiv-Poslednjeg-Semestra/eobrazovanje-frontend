@@ -9,3 +9,6 @@ select option:checked {
   color: #0d6efd !important;
 }
 
+#resultMsg{
+    color:red;
+}

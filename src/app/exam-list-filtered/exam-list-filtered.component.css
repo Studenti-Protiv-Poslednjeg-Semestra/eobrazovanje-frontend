@@ -20,3 +20,7 @@ button {
   float: right;
   width: 15%;
 }
+
+#resultMsg {
+  color: red;
+}

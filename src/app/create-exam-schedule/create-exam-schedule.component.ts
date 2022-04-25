@@ -16,6 +16,8 @@ export class CreateExamScheduleComponent implements OnInit {
   examSchedule: ExamSchedule = new ExamSchedule();
   subjects: Subject[] = [];
   examinationPeriods: ExaminationPeriod[] = [];
+  resultMsg: string = '';
+
 
   constructor(private examScheduleService: ExamScheduleService,
     private subjectService: SubjectService,
@@ -26,6 +28,9 @@ export class CreateExamScheduleComponent implements OnInit {
     this.subjectService.getAllSubjects().subscribe(
       data => {
         this.subjects = data;
+        if (this.subjects.length == 0) {
+          this.resultMsg += 'There are no available subjects'
+        }
       },
       error => {
         console.log(error);
@@ -35,6 +40,9 @@ export class CreateExamScheduleComponent implements OnInit {
     this.examinationPeriodService.getAllExamPeriods().subscribe(
       data => {
         this.examinationPeriods = data;
+        if (this.examinationPeriods.length == 0) {
+          this.resultMsg += '\nThere are no available examination periods'
+        }
       },
       error => {
         console.log(error);
@@ -45,7 +53,20 @@ export class CreateExamScheduleComponent implements OnInit {
   onSubmit = async () => {
     const timeOfExam = <HTMLInputElement>document.getElementById("timeOfExam");
     this.examSchedule.timeOfExam = timeOfExam.value;
-    
+
+    if (timeOfExam.value == '' || this.examSchedule.place == '' ||
+      this.examSchedule.subjectDTO == null || this.examSchedule.examinationPeriodDTO == null) {
+      this.resultMsg = 'All fields must be entered';
+      return;
+    }
+
+    let examDate = Date.parse(timeOfExam.value);
+    // setting time and place of exam editable or not if it's finished or not
+    if (examDate < Date.now()) {
+      this.resultMsg = 'Please enter correct date and time and try again';
+      return;
+    }
+
     this.examScheduleService.createExamSchedule(this.examSchedule).subscribe(
       data => {
         this.router.navigate(['/exams/application']);

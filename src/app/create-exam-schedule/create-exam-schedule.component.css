@@ -1,7 +1,3 @@
-button{
-    float:right;
-}
-
 select {
   width: 100%;
   overflow: scroll;
@@ -15,4 +11,8 @@ select option:checked {
 
 form{
     width: 80%;
+}
+
+#resultMsg{
+    color:red;
 }

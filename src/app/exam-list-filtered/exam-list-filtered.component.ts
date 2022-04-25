@@ -20,6 +20,7 @@ export class ExamListFilteredComponent implements OnInit {
   title: string = '';
   examType: string = '';
   viewType: string = 'passed';
+  resultMsg: string = '';
 
   pageSizes = [
     { id: 1, size: 5 },
@@ -72,6 +73,12 @@ export class ExamListFilteredComponent implements OnInit {
     this.examService.getExamListForStudent(studentId, page, this.itemsPerPage, this.examType, this.viewType).subscribe((response: any) => {
       this.pageOfExams = response.content;
       this.totalElements = response.content.size;
+      if (response.totalElements == 0) {
+        this.resultMsg = 'There are no exams';
+      }
+      else {
+        this.resultMsg = '';
+      }
     });
   }
 
@@ -79,6 +86,12 @@ export class ExamListFilteredComponent implements OnInit {
     this.examService.getExamListForSyllabus(syllabusId, page, this.itemsPerPage, this.examType, this.viewType).subscribe((response: any) => {
       this.pageOfExams = response.content;
       this.totalElements = response.content.size;
+      if (response.totalElements == 0) {
+        this.resultMsg = 'There are no exams';
+      }
+      else {
+        this.resultMsg = '';
+      }
     });
   }
 
