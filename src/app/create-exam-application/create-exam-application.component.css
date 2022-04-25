@@ -12,3 +12,6 @@ select option:checked {
 #resultMsg{
     color:red;
 }
+button{
+    float:right;
+}

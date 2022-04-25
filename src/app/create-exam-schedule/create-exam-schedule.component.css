@@ -16,3 +16,7 @@ form{
 #resultMsg{
     color:red;
 }
+
+button{
+    float:right;
+}

@@ -17,8 +17,9 @@ export class CreateExamApplicationComponent implements OnInit {
   examSchedules: ExamSchedule[] = [];
   role: string = '';
   studentId!: number;
-  examScheduleId!: number;
+  examScheduleId!: any;
   resultMsg: string = '';
+  funds!: number;
 
   constructor(private examScheduleService: ExamScheduleService,
     private studentService: StudentService,
@@ -49,7 +50,19 @@ export class CreateExamApplicationComponent implements OnInit {
     else if (role == 'ROLE_STUDENT') {
       this.getExamSchedules(null);
       this.studentId = this.tokenService.getUserId();
+      this.getStudent(this.studentId);
     }
+  }
+
+  getStudent(studentId: number) {
+    this.studentService.getStudent(studentId).subscribe(
+      data => {
+        this.funds = data.funds;
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
   getExamSchedules(studentId: any) {
@@ -67,15 +80,15 @@ export class CreateExamApplicationComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.examSchedules.length == 0 && this.studentId != null) {
+      return;
+    }
     if (this.studentId == null) {
       this.resultMsg = 'Please select student';
       return;
     }
     if (this.examScheduleId == null) {
       this.resultMsg = 'Please select exam schedule';
-      return;
-    }
-    if (this.examSchedules.length == 0) {
       return;
     }
     this.examService.createExamApplication(this.studentId, this.examScheduleId).subscribe(
@@ -92,6 +105,8 @@ export class CreateExamApplicationComponent implements OnInit {
     this.resultMsg = '';
     this.getExamSchedules(student.userDTO.id);
     this.studentId = student.userDTO.id;
+    this.funds = student.funds;
+    this.examScheduleId = null;
   }
 
   onChangeExamSchedule(examSchedule: ExamSchedule) {

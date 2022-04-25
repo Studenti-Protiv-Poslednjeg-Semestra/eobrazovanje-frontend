@@ -52,7 +52,12 @@ export class ExamListComponent implements OnInit {
         this.pageOfExams = response.content;
         this.totalElements = response.content.size;
         if (response.totalElements == 0) {
-          this.resultMsg = 'There are no exams';
+          if (this.examType == 'finished') {
+            this.resultMsg = '* There are no ' + this.viewType + ' exams';
+          }
+          else if (this.examType == 'unfinished') {
+            this.resultMsg = '* There are no registered exams';
+          }
         }
         else {
           this.resultMsg = '';
@@ -70,7 +75,12 @@ export class ExamListComponent implements OnInit {
       this.pageOfExams = response.content;
       this.totalElements = response.content.size;
       if (response.totalElements == 0) {
-        this.resultMsg = 'You have no exams';
+        if (this.examType == 'finished') {
+          this.resultMsg = '* You have no ' + this.viewType + ' exams';
+        }
+        else if (this.examType == 'unfinished') {
+          this.resultMsg = '* You have no registered exams';
+        }
       }
       else {
         this.resultMsg = '';
