@@ -3,7 +3,7 @@
   <form (ngSubmit)="onSubmit()">
 
     <div id="students" *ngIf="role=='ROLE_ADMIN'">
-      Student
+      Students
       <br />
       <select size=5>
         <option *ngFor="let student of students" [ngValue]="student"
@@ -14,13 +14,24 @@
       </select>
     </div>
 
+    <div id="subjects">
+      Subject
+      <br />
+      <select>
+        <option *ngFor="let subject of subjects"
+                [selected]="subject==subjectName"
+                [ngValue]="subject" (click)="onChangeSubject(subject)">
+          {{subject}}
+        </option>
+      </select>
+    </div>
+
     <div id="examSchedules">
-      Exam schedule
+      Exam schedules
       <br />
       <select size=5>
-        <option *ngFor="let examSchedule of examSchedules" [ngValue]="examSchedule"
+        <option *ngFor="let examSchedule of examSchedulesForSubject" [ngValue]="examSchedule"
                 (click)="onChangeExamSchedule(examSchedule)">
-          Subject - '{{examSchedule.subjectDTO.name}}',
           Place - '{{examSchedule.place}}',
           Time - '{{examSchedule.timeOfExam.replace('T',' ')}}'
         </option>

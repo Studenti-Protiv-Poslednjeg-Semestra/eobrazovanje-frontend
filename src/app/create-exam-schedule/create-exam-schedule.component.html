@@ -5,14 +5,12 @@
 
 
     <div id="subjects">
-      Subject
+      Subjects
       <br />
       <select size=5>
         <option *ngFor="let subject of subjects" [ngValue]="subject"
                 (click)="onChangeSubject(subject)">
-          Name - '{{subject.name}}',
-          Description - '{{subject.description}}',
-          ECTS - '{{subject.ects}}'
+          '{{subject.name}}',
         </option>
       </select>
     </div>
@@ -30,7 +28,7 @@
     </div>
 
     <div id="examination_periods">
-      Examination period
+      Examination periods
       <br />
       <select size=5>
         <option *ngFor="let examinationPeriod of examinationPeriods" [ngValue]="examinationPeriod"
