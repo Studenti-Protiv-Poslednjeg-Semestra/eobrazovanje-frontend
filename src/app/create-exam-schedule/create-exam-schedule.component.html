@@ -1,0 +1,47 @@
+<div class="col-md-6 offset-md-3">
+  <h3> Creating exam schedule </h3>
+
+  <form (ngSubmit)="onSubmit()">
+
+
+    <div id="subjects">
+      Subjects
+      <br />
+      <select size=5>
+        <option *ngFor="let subject of subjects" [ngValue]="subject"
+                (click)="onChangeSubject(subject)">
+          '{{subject.name}}',
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label> Time of exam </label>
+      <input type="datetime-local" class="form-control"
+             id="timeOfExam" name="timeOfExam" />
+    </div>
+
+    <div class="form-group">
+      <label> Place </label>
+      <input type="text" class="form-control" id="place"
+             [(ngModel)]="examSchedule.place" name="place" />
+    </div>
+
+    <div id="examination_periods">
+      Examination periods
+      <br />
+      <select size=5>
+        <option *ngFor="let examinationPeriod of examinationPeriods" [ngValue]="examinationPeriod"
+                (click)="onChangeExaminationPeriod(examinationPeriod)">
+          Name - '{{examinationPeriod.name}}',
+          Start date - '{{examinationPeriod.startDate}}',
+          End date - '{{examinationPeriod.endDate}}'
+        </option>
+      </select>
+    </div>
+
+    <br />
+    <button class="btn btn-success" type="submit">Submit</button>
+  </form>
+  <div id="resultMsg">{{resultMsg}}</div>
+</div>

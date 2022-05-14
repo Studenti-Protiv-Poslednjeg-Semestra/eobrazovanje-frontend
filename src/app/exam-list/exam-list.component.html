@@ -1,0 +1,65 @@
+<div class="container">
+	<h2>All {{examType}} exams</h2>
+	<div id="viewType" *ngIf="examType=='finished'">
+		<select>
+			<option (click)="onChangeExamView('passed')">Passed</option>
+			<option (click)="onChangeExamView('failed')">Failed</option>
+		</select>
+	</div>
+	<hr />
+	<div id="pagination">
+		<pagination-controls (pageChange)="onChangePage($event)"></pagination-controls>
+	</div>
+
+	<div id="pageSize">
+		Items per page
+		<select>
+			<option *ngFor="let pageSize of pageSizes" [ngValue]="pageSize.id" (click)="onPageSizeChange(pageSize.size)">
+				{{pageSize.size}}
+			</option>
+		</select>
+	</div>
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Student</th>
+				<th>Time of exam</th>
+				<th>Points</th>
+				<th>Syllabus</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let exam of pageOfExams | paginate: {
+                                                      itemsPerPage: itemsPerPage,
+                                                      currentPage: currentPage,
+                                                      totalItems: totalElements }">
+				<td *ngIf="localStorageItem('ROLE') == 'ROLE_STUDENT'">{{ exam.studentDTO.userDTO.firstName }}</td>
+				<td *ngIf="localStorageItem('ROLE') != 'ROLE_STUDENT'">
+					<a routerLink="/exams/{{examType}}/student/{{exam.studentDTO.userDTO.id}}" routerLinkActive="active">
+						{{ exam.studentDTO.userDTO.firstName }}
+					</a>
+				</td>
+
+				<td> {{ exam.examScheduleDTO.timeOfExam.replace("T", " ").substring(0,16) }} </td>
+				<td> {{ exam.points ? exam.points : "0" }} </td>
+
+				<td *ngIf="localStorageItem('ROLE') == 'ROLE_STUDENT'">{{ exam.examScheduleDTO.subjectDTO.syllabusDTO.id }}</td>
+				<td *ngIf="localStorageItem('ROLE') != 'ROLE_STUDENT'">
+					<a routerLink="/exams/{{examType}}/syllabus/{{exam.examScheduleDTO.subjectDTO.syllabusDTO.id}}" routerLinkActive="active">
+						{{ exam.examScheduleDTO.subjectDTO.syllabusDTO.id }}
+					</a>
+				</td>
+
+				<td class="buttons"><button routerLink="/exams/view/{{exam.id}}" routerLinkActive="active" class="btn btn-info">View exam data</button></td>
+				<td class="buttons" *ngIf="examType=='unfinished' && localStorageItem('ROLE') != 'ROLE_TEACHER'">
+					<button (click)="onCancelExam(exam.id)" class="btn btn-danger">
+						Cancel exam
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div id="resultMsg">{{resultMsg}}</div>
+</div>

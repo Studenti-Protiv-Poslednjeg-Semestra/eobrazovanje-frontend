@@ -1,0 +1,22 @@
+th, td {
+  text-align: center;
+}
+
+button {
+  color: white;
+}
+
+.buttons {
+  width: 13%;
+}
+
+
+#pagination {
+  float: left;
+  width: 85%;
+}
+
+#pageSize {
+  float: right;
+  width: 15%;
+}

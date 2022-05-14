@@ -1,0 +1,22 @@
+select {
+  width: 100%;
+  overflow: scroll;
+}
+
+select option:checked {
+  background: linear-gradient(#0d6efd, #0d6efd);
+  background-color: #0d6efd;
+  color: #0d6efd !important;
+}
+
+form{
+    width: 80%;
+}
+
+#resultMsg{
+    color:red;
+}
+
+button{
+    float:right;
+}

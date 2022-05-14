@@ -1,0 +1,47 @@
+<div class="col-md-5 offset-md-3">
+  <h2>Exam registration</h2>
+  <form (ngSubmit)="onSubmit()">
+
+    <div id="students" *ngIf="role=='ROLE_ADMIN'">
+      Students
+      <br />
+      <select size=5>
+        <option *ngFor="let student of students" [ngValue]="student"
+                (click)="onChangeStudent(student)">
+          First name - '{{student.userDTO.firstName}}',
+          Last name - '{{student.userDTO.lastName}}'
+        </option>
+      </select>
+    </div>
+
+    <div id="subjects">
+      Subject
+      <br />
+      <select>
+        <option *ngFor="let subject of subjects"
+                [selected]="subject==subjectName"
+                [ngValue]="subject" (click)="onChangeSubject(subject)">
+          {{subject}}
+        </option>
+      </select>
+    </div>
+
+    <div id="examSchedules">
+      Exam schedules
+      <br />
+      <select size=5>
+        <option *ngFor="let examSchedule of examSchedulesForSubject" [ngValue]="examSchedule"
+                (click)="onChangeExamSchedule(examSchedule)">
+          Place - '{{examSchedule.place}}',
+          Time - '{{examSchedule.timeOfExam.replace('T',' ')}}'
+        </option>
+      </select>
+      <br />
+      <b *ngIf="studentId != null">Available funds: </b><i>{{funds}}</i>
+    </div>
+    <button class="btn btn-success" type="submit">Submit</button>
+  </form>
+
+  <div id="resultMsg">{{resultMsg}}</div>
+
+</div>
