@@ -8,7 +8,7 @@ import { ExaminationPeriod } from '../_models/examination-period';
 })
 export class ExaminationPeriodService {
 
-  private baseURL = "http://localhost:8080/ss/examination_periods";
+  private baseURL = "http://localhost:8080/api/v1/examination_periods";
   constructor(private httpClient: HttpClient) { }
 
   getAllExamPeriods(): Observable<ExaminationPeriod[]> {
