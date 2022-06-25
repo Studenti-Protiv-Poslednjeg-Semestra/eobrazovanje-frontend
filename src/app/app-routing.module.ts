@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CreateExamApplicationComponent } from './create-exam-application/create-exam-application.component';
-import { CreateExamScheduleComponent } from './create-exam-schedule/create-exam-schedule.component';
-import { ExamListFilteredComponent } from './exam-list-filtered/exam-list-filtered.component';
-import { ExamListComponent } from './exam-list/exam-list.component';
-import { LoginComponent } from './login/login.component';
-import { ViewExamComponent } from './view-exam/view-exam.component';
+import { CreateExamApplicationComponent } from './components/create-exam-application/create-exam-application.component';
+import { CreateExamScheduleComponent } from './components/create-exam-schedule/create-exam-schedule.component';
+import { ExamListFilteredComponent } from './components/exam-list-filtered/exam-list-filtered.component';
+import { ExamListComponent } from './components/exam-list/exam-list.component';
+import { LoginComponent } from './components/login/login.component';
+import { ViewExamComponent } from './components/view-exam/view-exam.component';
 import { AuthGuard } from './_helpers/auth.guard';
 
 const routes: Routes = [

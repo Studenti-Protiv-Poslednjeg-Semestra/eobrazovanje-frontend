@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ExamSchedule } from '../_models/exam-schedule';
-import { Student } from '../_models/student';
-import { Subject } from '../_models/subject';
-import { ExamScheduleService } from '../_services/exam-schedule.service';
-import { ExamService } from '../_services/exam.service';
-import { StudentService } from '../_services/student.service';
-import { TokenService } from '../_services/token.service';
+import { ExamSchedule } from '../../_models/exam-schedule';
+import { Student } from '../../_models/student';
+import { Subject } from '../../_models/subject';
+import { ExamScheduleService } from '../../_services/exam-schedule.service';
+import { ExamService } from '../../_services/exam.service';
+import { StudentService } from '../../_services/student.service';
+import { TokenService } from '../../_services/token.service';
 
 @Component({
   selector: 'app-create-exam-application',

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Exam } from '../_models/exam';
-import { ExamSchedule } from '../_models/exam-schedule';
-import { ExamScheduleService } from '../_services/exam-schedule.service';
-import { ExamService } from '../_services/exam.service';
+import { Exam } from '../../_models/exam';
+import { ExamSchedule } from '../../_models/exam-schedule';
+import { ExamScheduleService } from '../../_services/exam-schedule.service';
+import { ExamService } from '../../_services/exam.service';
 
 @Component({
   selector: 'app-view-exam',
@@ -23,7 +23,7 @@ export class ViewExamComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    
+
     this.id = this.route.snapshot.params['id'];
     this.examService.getExamById(this.id).subscribe(
       response => {

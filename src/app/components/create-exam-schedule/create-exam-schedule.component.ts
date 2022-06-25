@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ExamSchedule } from '../_models/exam-schedule';
-import { ExaminationPeriod } from '../_models/examination-period';
-import { Subject } from '../_models/subject';
-import { ExamScheduleService } from '../_services/exam-schedule.service';
-import { ExaminationPeriodService } from '../_services/examination-period.service';
-import { SubjectService } from '../_services/subject.service';
+import { ExamSchedule } from '../../_models/exam-schedule';
+import { ExaminationPeriod } from '../../_models/examination-period';
+import { Subject } from '../../_models/subject';
+import { ExamScheduleService } from '../../_services/exam-schedule.service';
+import { ExaminationPeriodService } from '../../_services/examination-period.service';
+import { SubjectService } from '../../_services/subject.service';
 
 @Component({
   selector: 'app-create-exam-schedule',

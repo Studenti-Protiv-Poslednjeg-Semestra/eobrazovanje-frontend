@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ExamService } from '../_services/exam.service';
-import { TokenService } from '../_services/token.service';
+import { ExamService } from '../../_services/exam.service';
+import { TokenService } from '../../_services/token.service';
 
 @Component({
   selector: 'app-exam-list',
