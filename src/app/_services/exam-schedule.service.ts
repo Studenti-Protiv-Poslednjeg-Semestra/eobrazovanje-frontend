@@ -7,7 +7,7 @@ import { ExamSchedule } from '../_models/exam-schedule';
   providedIn: 'root'
 })
 export class ExamScheduleService {
-  private baseURL = "http://localhost:8080/ss/exam_schedules";
+  private baseURL = "http://localhost:8080/api/v1/exam_schedules";
 
 
   constructor(private httpClient: HttpClient) { }
