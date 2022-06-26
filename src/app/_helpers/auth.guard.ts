@@ -30,6 +30,7 @@ export class AuthGuard implements CanActivate {
       // returns list of roles
       let rolesFixed: string = roles[0] as string;
 
+      console.log('Route: ' + url)
       console.log("Authorized roles for this route: " + rolesFixed);
       console.log("User role: " + userRole);
 
@@ -44,7 +45,7 @@ export class AuthGuard implements CanActivate {
       // check if route is protected by roles and if it is
       // does user's role exist in list of authorized roles
       if (rolesFixed[0] && !rolesFixed.includes(userRole)) {
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
         return false;
       }
 
@@ -56,5 +57,5 @@ export class AuthGuard implements CanActivate {
     this.router.navigate(['/login']);
     return false;
   }
-  
+
 }

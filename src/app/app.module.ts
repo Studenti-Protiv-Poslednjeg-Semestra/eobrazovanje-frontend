@@ -12,7 +12,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ExamListFilteredComponent } from './components/exam-list-filtered/exam-list-filtered.component';
 import { CreateExamScheduleComponent } from './components/create-exam-schedule/create-exam-schedule.component';
 import { CreateExamApplicationComponent } from './components/create-exam-application/create-exam-application.component';
-import { AddTeachersToSubjectsComponent } from './components/add-teachers-to-subjects/add-teachers-to-subjects.component';
+import { HomeComponent } from './components/home/home.component';
+//import { AddTeachersToSubjectsComponent } from './components/add-teachers-to-subjects/add-teachers-to-subjects.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { AddTeachersToSubjectsComponent } from './components/add-teachers-to-sub
     ExamListFilteredComponent,
     CreateExamScheduleComponent,
     CreateExamApplicationComponent,
-    AddTeachersToSubjectsComponent,
+    HomeComponent,
+    //AddTeachersToSubjectsComponent,
   ],
   imports: [
     BrowserModule,

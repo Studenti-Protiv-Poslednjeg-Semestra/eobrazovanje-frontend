@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginCredentials } from '../../login-credentials';
 import { AuthService } from '../../_services/auth-service';
 import { LoginService } from '../../_services/login.service';
@@ -17,7 +18,13 @@ export class LoginComponent implements OnInit {
 
   constructor(private loginService: LoginService,
     private tokenService: TokenService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private router: Router) {
+
+    if (authService.isLoggedIn()) this.router.navigate(['/home']);
+
+
+  }
 
   onSubmit = async () => {
     this.loginService.login(this.loginCredentials).subscribe(
@@ -25,23 +32,14 @@ export class LoginComponent implements OnInit {
 
         const decoded_token = this.tokenService.decodeToken(data.jwt);
         if (decoded_token) {
+
+          this.authService.login(data.jwt, decoded_token.authorities[0].name);
+          console.log("You have successfully logged in.");
           console.log("JWT: " + data.jwt);
           console.log("ROLE: " + localStorage.getItem('ROLE'));
 
-          if (localStorage.getItem('ROLE') == "ROLE_STUDENT") {
+          this.router.navigate(['/home']);
 
-          }
-          else if (localStorage.getItem('ROLE') == "ROLE_TEACHER") {
-
-          }
-          else if (localStorage.getItem('ROLE') == "ROLE_ADMIN"){
-
-          }
-
-          this.authService.login(data.jwt, decoded_token.authorities[0].name);
-
-          // until redirection pages are made
-          this.resultMsg = "You have successfully logged in as: " + localStorage.getItem('ROLE')?.substring(5,);
         }
         else {
           console.log("Not able to decode this token.");

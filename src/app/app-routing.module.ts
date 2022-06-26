@@ -4,13 +4,24 @@ import { CreateExamApplicationComponent } from './components/create-exam-applica
 import { CreateExamScheduleComponent } from './components/create-exam-schedule/create-exam-schedule.component';
 import { ExamListFilteredComponent } from './components/exam-list-filtered/exam-list-filtered.component';
 import { ExamListComponent } from './components/exam-list/exam-list.component';
+import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ViewExamComponent } from './components/view-exam/view-exam.component';
 import { AuthGuard } from './_helpers/auth.guard';
 
 const routes: Routes = [
   // redirect to somewhere if path is empty
-  //{ path: '', redirectTo: '', pathMatch: 'full' },
+  {
+    path: '', redirectTo: 'home', pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ['ROLE_ADMIN', 'ROLE_TEACHER', 'ROLE_STUDENT']
+    }
+  },
   {
     path: "exams/application", component: CreateExamApplicationComponent,
     canActivate: [AuthGuard],
@@ -66,6 +77,9 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: '**', redirectTo: 'home', pathMatch: 'full'
   }
 ];
 
