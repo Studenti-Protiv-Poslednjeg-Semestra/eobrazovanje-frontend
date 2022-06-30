@@ -8,7 +8,7 @@ import { Exam } from '../_models/exam';
 })
 export class ExamService {
 
-  private baseURL = "http://localhost:8080/ss/exams";
+  private baseURL = "http://localhost:8080/api/v1/exams";
   constructor(private httpClient: HttpClient ) { }
 
   getExamList(page: number, itemsPerPage: number, examType: string, viewType: string) {

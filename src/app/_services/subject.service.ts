@@ -8,10 +8,14 @@ import { Subject } from '../_models/subject';
 })
 export class SubjectService {
 
-  private baseURL = "http://localhost:8080/ss/subjects";
+  private baseURL = "http://localhost:8080/api/v1/subjects";
   constructor(private httpClient: HttpClient) { }
 
   getAllSubjects(): Observable<Subject[]> {
     return this.httpClient.get<Subject[]>(`${this.baseURL}`);
+  }
+
+  getSubjectsByPage(page: number): Observable<Subject[]>{
+    return this.httpClient.get<Subject[]>(`${this.baseURL}?page=${page}`)
   }
 }

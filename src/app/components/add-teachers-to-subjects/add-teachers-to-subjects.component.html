@@ -1,0 +1,26 @@
+<div class="container-fluid" style="margin-top: 50px">
+  <div class="row">
+    <form class="col-md-6 offset-md-3 offset-md-3" (ngSubmit)="onSubmit()">
+<!--      <label class="form-label">Type page number: </label>-->
+<!--      <input class="form-control form-control-sm" type="number" name="pageUser" [(ngModel)]="pageUser" (change)="onUserPageChange()">-->
+      <label class="form-label" for="user">Choose teacher: </label>
+      <select class="form-select" name="user" id="user" [(ngModel)]="userId" (change)="onChange($event.target, 'teacher')">
+        <option *ngFor="let teacher of teachers" [value]="teacher.userDTO.id">
+          {{teacher.userDTO.firstName}} {{teacher.userDTO.lastName}}
+        </option>
+      </select>
+      <label class="form-label" for="subject">Choose subject: </label>
+      <select class="form-select" name="subject" id="subject" [(ngModel)]="subjectId" (change)="onChange($event.target, 'subject')">
+        <option *ngFor="let subject of subjects" [value]="subject.id">{{subject.name}}</option>
+      </select>
+<!--      <label class="form-label">Type page number: </label>-->
+<!--      <input class="form-control form-control-sm" type="number" name="pageSubject" [(ngModel)]="pageSubject" (change)="onSubjectPageChange()">-->
+      <div>
+        <label style="margin-right: 10px">Is professor?</label>
+        <input class="form-check-input" [(ngModel)]="isProfessor" type="checkbox" name="isProfessor">
+      </div>
+      <br>
+      <input class="btn btn-primary col-md-12" type="submit" value="Save">
+    </form>
+  </div>
+</div>

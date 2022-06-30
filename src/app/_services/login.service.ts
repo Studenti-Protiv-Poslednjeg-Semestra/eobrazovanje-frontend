@@ -9,7 +9,7 @@ import { LoginCredentials } from '../login-credentials';
 })
 export class LoginService {
 
-  private baseURL = "http://localhost:8080/ss/auth/login";
+  private baseURL = "http://localhost:8080/api/v1/auth/login";
 
   constructor(private httpClient: HttpClient) { }
 

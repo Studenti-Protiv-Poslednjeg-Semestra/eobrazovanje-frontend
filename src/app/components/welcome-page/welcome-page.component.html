@@ -1,0 +1,9 @@
+<div class="container-fluid">
+  <div class="position-absolute top-50 start-50 translate-middle">
+    <h1 class="text-lg-center text-dark">Welcome to our faculty!</h1>
+    <div *ngIf="!localStorageItem('TOKEN')">
+      <h3 class="text-center text-dark">Please proceed to login page.</h3>
+      <button class="btn btn-info col-md-6 offset-md-3" (click)="onClick()">Go to login page</button>
+    </div>
+  </div>
+</div>
