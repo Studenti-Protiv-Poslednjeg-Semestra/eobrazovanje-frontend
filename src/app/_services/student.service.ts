@@ -18,4 +18,12 @@ export class StudentService {
   getStudent(id: number): Observable<Student> {
     return this.httpClient.get<Student>(`${this.baseURL}/${id}`);
   }
+
+  getNewStudents(): Observable<Student[]> {
+    return this.httpClient.get<Student[]>(`${this.baseURL}/new`);
+  }
+
+  addStudentToSyllabus(studentId: number, syllabusId:number): Observable<Student> {
+    return this.httpClient.post<Student>(`${this.baseURL}/${studentId}/syllabus/${syllabusId}`, {});
+  }
 }

@@ -14,6 +14,7 @@ import { CreateExamScheduleComponent } from './components/create-exam-schedule/c
 import { CreateExamApplicationComponent } from './components/create-exam-application/create-exam-application.component';
 import { AddTeachersToSubjectsComponent } from './components/add-teachers-to-subjects/add-teachers-to-subjects.component';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
+import { AddStudentsToSyllabusComponent } from './components/add-students-to-syllabus/add-students-to-syllabus.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { WelcomePageComponent } from './components/welcome-page/welcome-page.com
     CreateExamApplicationComponent,
     AddTeachersToSubjectsComponent,
     WelcomePageComponent,
+    AddStudentsToSyllabusComponent,
   ],
   imports: [
     BrowserModule,

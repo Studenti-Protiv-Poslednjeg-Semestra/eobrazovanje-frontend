@@ -1,0 +1,22 @@
+<div class="container-fluid" style="margin-top: 50px">
+  <div class="row">
+    <form class="col-md-6 offset-md-3 offset-md-3" (ngSubmit)="onSubmit()">
+      <!--      <label class="form-label">Type page number: </label>-->
+      <!--      <input class="form-control form-control-sm" type="number" name="pageUser" [(ngModel)]="pageUser" (change)="onUserPageChange()">-->
+      <label class="form-label" for="user">Choose student: </label>
+      <select class="form-select" name="user" id="user" [(ngModel)]="studentId" (change)="onChange($event.target, 'student')">
+        <option *ngFor="let student of students" [value]="student.userDTO.id">
+          {{student.userDTO.firstName}} {{student.userDTO.lastName}}
+        </option>
+      </select>
+      <label class="form-label" for="subject">Choose syllabus: </label>
+      <select class="form-select" name="subject" id="subject" [(ngModel)]="syllabusId" (change)="onChange($event.target, 'syllabus')">
+        <option *ngFor="let syllabus of syllabi" [value]="syllabus.id">{{syllabus.majorDTO.name}}</option>
+      </select>
+      <!--      <label class="form-label">Type page number: </label>-->
+      <!--      <input class="form-control form-control-sm" type="number" name="pageSubject" [(ngModel)]="pageSubject" (change)="onSubjectPageChange()">-->
+      <br>
+      <input class="btn btn-primary col-md-12" type="submit" value="Save">
+    </form>
+  </div>
+</div>

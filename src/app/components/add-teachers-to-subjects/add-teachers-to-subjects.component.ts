@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {TeacherService} from "../../_services/teacher.service";
-import {TokenService} from "../../_services/token.service";
 import {Router} from "@angular/router";
 import {Teacher} from "../../_models/teacher";
 import {Subject} from "../../_models/subject";
@@ -24,23 +23,17 @@ export class AddTeachersToSubjectsComponent implements OnInit {
 
   constructor(private teacherService: TeacherService,
               private subjectService: SubjectService,
-              private tokenService: TokenService,
               private router: Router) {
   }
 
 
-
   ngOnInit(): void {
-    this.teacherService.getTeachersByPage(this.pageUser).subscribe( (data: Teacher[]) => {
-      if(data){
-        this.teachers = data
-      }
+    this.teacherService.getTeachersByPage(this.pageUser).subscribe((data: Teacher[]) => {
+      if (data) this.teachers = data
     })
 
-    this.subjectService.getSubjectsByPage(this.pageSubject).subscribe( (data: Subject[]) => {
-      if(data){
-        this.subjects = data
-      }
+    this.subjectService.getSubjectsByPage(this.pageSubject).subscribe((data: Subject[]) => {
+      if (data) this.subjects = data
     })
   }
 
@@ -60,30 +53,27 @@ export class AddTeachersToSubjectsComponent implements OnInit {
   //   })
   // }
 
-  onChange(newValue: any, name: string){
+  onChange(newValue: any, name: string) {
     newValue = newValue.value
-    console.log("", newValue)
-    if(name.match("teacher")){
+    if (name.match("teacher")) {
       this.userId = newValue
       return
     }
     this.subjectId = newValue
   }
 
-  onSubmit(){
-    console.log("Submit korisnik", this.userId)
-    console.log("Submit predmet", this.subjectId)
-    if(!this.userId || !this.subjectId){
+  onSubmit() {
+    if (!this.userId || !this.subjectId) {
       this.warning = "Please select user and subject"
       return
     }
 
-    if(this.isProfessor){
-      this.teacherService.addProfessorOnSubject(this.userId, this.subjectId).subscribe( data => {
+    if (this.isProfessor) {
+      this.teacherService.addProfessorOnSubject(this.userId, this.subjectId).subscribe(data => {
         console.log(data)
       })
-    }else {
-      this.teacherService.addAssistantOnSubject(this.userId, this.subjectId).subscribe( data => {
+    } else {
+      this.teacherService.addAssistantOnSubject(this.userId, this.subjectId).subscribe(data => {
         console.log(data)
       })
     }
