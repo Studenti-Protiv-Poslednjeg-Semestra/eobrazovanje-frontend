@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
   <ul class="navbar-nav">
     <li class="nav-item" *ngIf="localStorageItem('TOKEN') && localStorageItem('STATE')">
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">Home</a>
+      <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">Home</a>
     </li>
     <li class="nav-item" *ngIf="localStorageItem('TOKEN') && localStorageItem('STATE')">
       <a routerLink="exams/unfinished" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">Registered exams</a>
