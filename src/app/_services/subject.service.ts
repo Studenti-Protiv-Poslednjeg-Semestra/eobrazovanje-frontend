@@ -14,4 +14,8 @@ export class SubjectService {
   getAllSubjects(): Observable<Subject[]> {
     return this.httpClient.get<Subject[]>(`${this.baseURL}`);
   }
+
+  getSubjectsByPage(page: number): Observable<Subject[]>{
+    return this.httpClient.get<Subject[]>(`${this.baseURL}?page=${page}`)
+  }
 }

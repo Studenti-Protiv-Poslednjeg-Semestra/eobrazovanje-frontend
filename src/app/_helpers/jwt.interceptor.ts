@@ -8,7 +8,7 @@ import { TokenService } from '../_services/token.service';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-  private baseURL = "http://localhost:8080/ss";
+  private baseURL = "http://localhost:8080/api/v1";
 
   constructor(private authService: AuthService,
     private tokenService: TokenService) { }

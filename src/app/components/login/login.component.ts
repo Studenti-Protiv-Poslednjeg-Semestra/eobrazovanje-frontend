@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { LoginCredentials } from '../../login-credentials';
-import { AuthService } from '../../_services/auth-service';
-import { LoginService } from '../../_services/login.service';
-import { TokenService } from '../../_services/token.service';
+import {Component, OnInit} from '@angular/core';
+import {LoginCredentials} from '../../login-credentials';
+import {AuthService} from '../../_services/auth-service';
+import {LoginService} from '../../_services/login.service';
+import {TokenService} from '../../_services/token.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -16,8 +17,11 @@ export class LoginComponent implements OnInit {
   resultMsg: string = "";
 
   constructor(private loginService: LoginService,
-    private tokenService: TokenService,
-    private authService: AuthService) { }
+              private tokenService: TokenService,
+              private authService: AuthService,
+              private router: Router
+  ) {
+  }
 
   onSubmit = async () => {
     this.loginService.login(this.loginCredentials).subscribe(
@@ -28,22 +32,10 @@ export class LoginComponent implements OnInit {
           console.log("JWT: " + data.jwt);
           console.log("ROLE: " + localStorage.getItem('ROLE'));
 
-          if (localStorage.getItem('ROLE') == "ROLE_STUDENT") {
-
-          }
-          else if (localStorage.getItem('ROLE') == "ROLE_TEACHER") {
-
-          }
-          else if (localStorage.getItem('ROLE') == "ROLE_ADMIN"){
-
-          }
-
           this.authService.login(data.jwt, decoded_token.authorities[0].name);
+          this.router.navigate(["/"])
 
-          // until redirection pages are made
-          this.resultMsg = "You have successfully logged in as: " + localStorage.getItem('ROLE')?.substring(5,);
-        }
-        else {
+        } else {
           console.log("Not able to decode this token.");
           this.resultMsg = "Server error";
         }
@@ -55,10 +47,16 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.localStorageItem("TOKEN")) {
+      this.router.navigate(["/"])
+    }
   }
 
+  localStorageItem(id: string): any {
+    return localStorage.getItem(id);
+  }
 }
 
 function jwt_decode(token: string): any {
-    throw new Error('Function not implemented.');
+  throw new Error('Function not implemented.');
 }

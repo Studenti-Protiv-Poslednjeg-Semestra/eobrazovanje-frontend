@@ -7,10 +7,19 @@ import { ExamListComponent } from './components/exam-list/exam-list.component';
 import { LoginComponent } from './components/login/login.component';
 import { ViewExamComponent } from './components/view-exam/view-exam.component';
 import { AuthGuard } from './_helpers/auth.guard';
+import {AddTeachersToSubjectsComponent} from "./components/add-teachers-to-subjects/add-teachers-to-subjects.component";
+import {WelcomePageComponent} from "./components/welcome-page/welcome-page.component";
 
 const routes: Routes = [
   // redirect to somewhere if path is empty
   //{ path: '', redirectTo: '', pathMatch: 'full' },
+  {
+    path: "subjects/add-teacher", component: AddTeachersToSubjectsComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ["ROLE_ADMIN"]
+    }
+  },
   {
     path: "exams/application", component: CreateExamApplicationComponent,
     canActivate: [AuthGuard],
@@ -64,8 +73,12 @@ const routes: Routes = [
     }
   },
   {
-    path: 'login',
+    path: "login",
     component: LoginComponent
+  },
+  {
+    path: "",
+    component: WelcomePageComponent
   }
 ];
 
