@@ -17,6 +17,7 @@ import { WelcomePageComponent } from './components/welcome-page/welcome-page.com
 import { AddStudentsToSyllabusComponent } from './components/add-students-to-syllabus/add-students-to-syllabus.component';
 import { StudentAccountComponent } from './components/student-account/student-account.component';
 import { AllStudentsComponent } from './components/all-students/all-students.component';
+import { EnrollmentOnNextSemesterComponent } from './components/enrollment-on-next-semester/enrollment-on-next-semester.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { AllStudentsComponent } from './components/all-students/all-students.com
     AddStudentsToSyllabusComponent,
     StudentAccountComponent,
     AllStudentsComponent,
+    EnrollmentOnNextSemesterComponent,
   ],
   imports: [
     BrowserModule,

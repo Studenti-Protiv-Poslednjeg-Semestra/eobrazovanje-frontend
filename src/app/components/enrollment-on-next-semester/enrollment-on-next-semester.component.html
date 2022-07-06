@@ -1,0 +1,9 @@
+<div class="container-fluid">
+  <h2 class="text-center">Enrollment on next semester</h2>
+  <div *ngIf="enoughExams" style="display: flex; justify-content: center">
+    <button class="btn btn-lg btn-primary" (click)="onClick()">Enroll on next semester</button>
+  </div>
+  <div *ngIf="!enoughExams">
+    <p class="text-center text-danger" style="font-size: xxx-large">Do not have enough finished exams</p>
+  </div>
+</div>

@@ -12,6 +12,7 @@ import {WelcomePageComponent} from "./components/welcome-page/welcome-page.compo
 import {AddStudentsToSyllabusComponent} from "./components/add-students-to-syllabus/add-students-to-syllabus.component";
 import {StudentAccountComponent} from "./components/student-account/student-account.component";
 import {AllStudentsComponent} from "./components/all-students/all-students.component";
+import {EnrollmentOnNextSemesterComponent} from "./components/enrollment-on-next-semester/enrollment-on-next-semester.component";
 
 const routes: Routes = [
   // redirect to somewhere if path is empty
@@ -49,6 +50,13 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       role: ["ROLE_ADMIN"]
+    }
+  },
+  {
+    path: "enrollment", component: EnrollmentOnNextSemesterComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ["ROLE_STUDENT"]
     }
   },
   {
