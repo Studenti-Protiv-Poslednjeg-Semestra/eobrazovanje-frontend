@@ -27,7 +27,7 @@ export class StudentService {
     return this.httpClient.get<Student[]>(`${this.baseURL}/new`);
   }
 
-  addStudentToSyllabus(studentId: number, syllabusId:number): Observable<Student> {
-    return this.httpClient.post<Student>(`${this.baseURL}/${studentId}/syllabus/${syllabusId}`, {});
+  addStudentToSyllabus(studentToSyllabus: Object): Observable<Student> {
+    return this.httpClient.post<Student>(`${this.baseURL}/syllabus`, studentToSyllabus);
   }
 }

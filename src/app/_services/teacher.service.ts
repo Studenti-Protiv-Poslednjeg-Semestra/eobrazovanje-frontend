@@ -16,11 +16,11 @@ export class TeacherService {
     return this.http.get<Teacher[]>(`${this.api}?page=${page}`)
   }
 
-  addProfessorOnSubject(userId: number, subjectId: number): Observable<Teacher>{
-    return this.http.put<Teacher>(`${this.api}/${userId}/professor/subjects/${subjectId}`, {})
+  addProfessorOnSubject(professorOnSubject: Object): Observable<Teacher>{
+    return this.http.put<Teacher>(`${this.api}/professor/subjects`, professorOnSubject)
   }
 
-  addAssistantOnSubject(userId: number, subjectId: number): Observable<Teacher>{
-    return this.http.put<Teacher>(`${this.api}/${userId}/assistant/subjects/${subjectId}`, {})
+  addAssistantOnSubject(professorOnSubject: Object): Observable<Teacher>{
+    return this.http.put<Teacher>(`${this.api}/assistant/subjects`, professorOnSubject)
   }
 }

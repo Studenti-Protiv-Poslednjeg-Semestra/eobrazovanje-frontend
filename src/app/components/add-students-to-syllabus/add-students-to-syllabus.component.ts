@@ -43,12 +43,17 @@ export class AddStudentsToSyllabusComponent implements OnInit {
   }
 
   onSubmit() {
-    if(!this.studentId || !this.syllabusId){
+    if (!this.studentId || !this.syllabusId) {
       this.warning = "Please select student and syllabus"
       return
     }
 
-    this.studentService.addStudentToSyllabus(this.studentId, this.syllabusId).subscribe(response => {
+    let studentToSyllabus = {
+      studentId: this.studentId,
+      syllabusId: this.syllabusId
+    }
+
+    this.studentService.addStudentToSyllabus(studentToSyllabus).subscribe(response => {
       console.log(response)
     })
 

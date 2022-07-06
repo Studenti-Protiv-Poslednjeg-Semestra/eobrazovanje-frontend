@@ -68,12 +68,17 @@ export class AddTeachersToSubjectsComponent implements OnInit {
       return
     }
 
+    let professorOnSubject = {
+      teacherId: this.userId,
+      subjectId: this.subjectId
+    }
+
     if (this.isProfessor) {
-      this.teacherService.addProfessorOnSubject(this.userId, this.subjectId).subscribe(data => {
+      this.teacherService.addProfessorOnSubject(professorOnSubject).subscribe(data => {
         console.log(data)
       })
     } else {
-      this.teacherService.addAssistantOnSubject(this.userId, this.subjectId).subscribe(data => {
+      this.teacherService.addAssistantOnSubject(professorOnSubject).subscribe(data => {
         console.log(data)
       })
     }
