@@ -30,4 +30,12 @@ export class StudentService {
   addStudentToSyllabus(studentToSyllabus: Object): Observable<Student> {
     return this.httpClient.post<Student>(`${this.baseURL}/syllabus`, studentToSyllabus);
   }
+
+  enrollmentOnNextSemester(studentId: number): Observable<Student>{
+    return this.httpClient.put<Student>(`${this.baseURL}/semester-enrollment`, studentId)
+  }
+
+  getNumberOfFinishedExams(studentId: number): Observable<Object>{
+    return this.httpClient.get<Object>(`${this.baseURL}/${studentId}/finished-exams`)
+  }
 }

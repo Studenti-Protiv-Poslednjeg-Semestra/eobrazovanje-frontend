@@ -9,11 +9,14 @@
     <li class="nav-item" *ngIf="localStorageItem('TOKEN') && localStorageItem('STATE')">
       <a routerLink="exams/finished" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">Finished exams</a>
     </li>
+    <li class="nav-item" *ngIf="localStorageItem('TOKEN') && localStorageItem('STATE') && localStorageItem('ROLE') != 'ROLE_TEACHER'">
+      <a routerLink="exams/application" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">Exam registration</a>
+    </li>
     <li class="nav-item" *ngIf="localStorageItem('TOKEN') && localStorageItem('STATE') && localStorageItem('ROLE') == 'ROLE_STUDENT'">
       <a routerLink="payments" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">View payments</a>
     </li>
-    <li class="nav-item" *ngIf="localStorageItem('TOKEN') && localStorageItem('STATE') && localStorageItem('ROLE') != 'ROLE_TEACHER'">
-      <a routerLink="exams/application" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">Exam registration</a>
+    <li class="nav-item" *ngIf="localStorageItem('TOKEN') && localStorageItem('STATE') && localStorageItem('ROLE') == 'ROLE_STUDENT'">
+      <a routerLink="enrollment" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">Enrollment next semester</a>
     </li>
     <li class="nav-item" *ngIf="localStorageItem('TOKEN') && localStorageItem('STATE') && localStorageItem('ROLE') == 'ROLE_ADMIN'">
       <a routerLink="exam_schedules/create" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">Add exam schedule</a>
