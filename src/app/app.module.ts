@@ -15,6 +15,8 @@ import { CreateExamApplicationComponent } from './components/create-exam-applica
 import { AddTeachersToSubjectsComponent } from './components/add-teachers-to-subjects/add-teachers-to-subjects.component';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
 import { AddStudentsToSyllabusComponent } from './components/add-students-to-syllabus/add-students-to-syllabus.component';
+import { StudentAccountComponent } from './components/student-account/student-account.component';
+import { AllStudentsComponent } from './components/all-students/all-students.component';
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import { AddStudentsToSyllabusComponent } from './components/add-students-to-syl
     AddTeachersToSubjectsComponent,
     WelcomePageComponent,
     AddStudentsToSyllabusComponent,
+    StudentAccountComponent,
+    AllStudentsComponent,
   ],
   imports: [
     BrowserModule,

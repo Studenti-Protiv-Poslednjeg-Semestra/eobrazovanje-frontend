@@ -10,6 +10,8 @@ import { AuthGuard } from './_helpers/auth.guard';
 import {AddTeachersToSubjectsComponent} from "./components/add-teachers-to-subjects/add-teachers-to-subjects.component";
 import {WelcomePageComponent} from "./components/welcome-page/welcome-page.component";
 import {AddStudentsToSyllabusComponent} from "./components/add-students-to-syllabus/add-students-to-syllabus.component";
+import {StudentAccountComponent} from "./components/student-account/student-account.component";
+import {AllStudentsComponent} from "./components/all-students/all-students.component";
 
 const routes: Routes = [
   // redirect to somewhere if path is empty
@@ -23,6 +25,27 @@ const routes: Routes = [
   },
   {
     path: "syllabi/add-student", component: AddStudentsToSyllabusComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ["ROLE_ADMIN"]
+    }
+  },
+  {
+    path: "payments/:studentId", component: StudentAccountComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ["ROLE_ADMIN"]
+    }
+  },
+  {
+    path: "payments", component: StudentAccountComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ["ROLE_STUDENT"]
+    }
+  },
+  {
+    path: "students", component: AllStudentsComponent,
     canActivate: [AuthGuard],
     data: {
       role: ["ROLE_ADMIN"]

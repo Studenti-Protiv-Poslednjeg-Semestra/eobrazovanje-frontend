@@ -1,0 +1,33 @@
+<div class="container-fluid" style="margin-top: 50px">
+  <h2 class="text-center">Student payments</h2>
+  <div id="pagination">
+    <pagination-controls (pageChange)="onChangePage($event)"></pagination-controls>
+  </div>
+  <div id="pageSize">
+    Items per page
+    <select>
+      <option *ngFor="let pageSize of pageSizes" [ngValue]="pageSize.id" (click)="onPageSizeChange(pageSize.size)">
+        {{pageSize.size}}
+      </option>
+    </select>
+  </div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Amount</th>
+      <th>Reason of payment</th>
+      <th>Timestamp</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let payment of payments | paginate: {itemsPerPage: itemsPerPage,
+                                                      currentPage: currentPage,
+                                                      totalItems: totalElements}">
+      <td>{{payment.amount}}</td>
+      <td>{{payment.reasonForPayment}}</td>
+      <td>{{payment.timestamp}}</td>
+    </tr>
+    </tbody>
+  </table>
+  <p>{{resultMessage}}</p>
+</div>

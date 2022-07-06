@@ -1,0 +1,43 @@
+<div class="container-fluid" style="margin-top: 50px">
+  <h2 class="text-center">Students</h2>
+  <div id="pagination">
+    <pagination-controls (pageChange)="onChangePage($event)"></pagination-controls>
+  </div>
+  <div id="pageSize">
+    Items per page
+    <select>
+      <option *ngFor="let pageSize of pageSizes" [ngValue]="pageSize.id" (click)="onPageSizeChange(pageSize.size)">
+        {{pageSize.size}}
+      </option>
+    </select>
+  </div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>UCN</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Semester</th>
+      <th>Funds</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let student of students | paginate: {itemsPerPage: itemsPerPage,
+                                                      currentPage: currentPage,
+                                                      totalItems: totalElements}">
+      <td>{{student.majorDTO.name}}</td>
+      <td>{{student.userDTO.firstName}}</td>
+      <td>{{student.userDTO.lastName}}</td>
+      <td>{{student.semester}}</td>
+      <td>{{student.funds}}</td>
+      <td>
+        <button class="btn btn-info" (click)="onClickStudentPayments(student.userDTO.id)">
+          View payments
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <p>{{resultMessage}}</p>
+</div>
