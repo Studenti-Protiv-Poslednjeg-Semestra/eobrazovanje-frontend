@@ -15,6 +15,10 @@ export class StudentService {
     return this.httpClient.get<Student[]>(`${this.baseURL}`);
   }
 
+  getAllStudentsPageAndSize(page: number, size: number): Observable<Student[]> {
+    return this.httpClient.get<Student[]>(`${this.baseURL}/pagination?page=${page}&size=${size}`);
+  }
+
   getStudent(id: number): Observable<Student> {
     return this.httpClient.get<Student>(`${this.baseURL}/${id}`);
   }
