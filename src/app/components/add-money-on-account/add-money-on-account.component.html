@@ -1,0 +1,16 @@
+<div class="container-fluid" style="margin-top: 50px">
+  <div class="row">
+    <form class="col-md-6 offset-md-3 offset-md-3" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="reason" class="form-label">Reason of payment:</label>
+        <input class="form-control" id="reason" name="reason" [(ngModel)]="reason">
+      </div>
+      <div class="mb-3">
+        <label for="amount" class="form-label">Amount:</label>
+        <input type="number" class="form-control" id="amount" name="amount" [(ngModel)]="amount">
+      </div>
+      <p class="text-danger">{{warning}}</p>
+      <input type="submit" class="btn btn-primary col-md-12" value="Pay">
+    </form>
+  </div>
+</div>

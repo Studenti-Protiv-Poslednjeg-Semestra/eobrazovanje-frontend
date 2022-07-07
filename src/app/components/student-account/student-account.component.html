@@ -20,9 +20,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let payment of payments | paginate: {itemsPerPage: itemsPerPage,
+    <tr *ngFor="let payment of payments | paginate: {
+                                                      itemsPerPage: itemsPerPage,
                                                       currentPage: currentPage,
-                                                      totalItems: totalElements}">
+                                                      totalItems: totalElements }">
       <td>{{payment.amount}}</td>
       <td>{{payment.reasonForPayment}}</td>
       <td>{{payment.timestamp}}</td>
