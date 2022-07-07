@@ -13,6 +13,7 @@ import {AddStudentsToSyllabusComponent} from "./components/add-students-to-sylla
 import {StudentAccountComponent} from "./components/student-account/student-account.component";
 import {AllStudentsComponent} from "./components/all-students/all-students.component";
 import {EnrollmentOnNextSemesterComponent} from "./components/enrollment-on-next-semester/enrollment-on-next-semester.component";
+import {AddMoneyOnAccountComponent} from "./components/add-money-on-account/add-money-on-account.component";
 
 const routes: Routes = [
   // redirect to somewhere if path is empty
@@ -54,6 +55,13 @@ const routes: Routes = [
   },
   {
     path: "enrollment", component: EnrollmentOnNextSemesterComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ["ROLE_STUDENT"]
+    }
+  },
+  {
+    path: "payment", component: AddMoneyOnAccountComponent,
     canActivate: [AuthGuard],
     data: {
       role: ["ROLE_STUDENT"]

@@ -12,7 +12,7 @@ export class EnrollmentOnNextSemesterComponent implements OnInit {
 
   studentId!: number
   numberOfFinishedExams!: number
-  student: Student = new Student()
+  student!: Student
   enoughExams!: boolean
 
   constructor(private studentService: StudentService,
@@ -25,18 +25,16 @@ export class EnrollmentOnNextSemesterComponent implements OnInit {
     })
     this.studentService.getStudent(this.studentId).subscribe((data: Student) => {
       this.student = data
+      this.enoughExams = this.numberOfFinishedExams >= (this.student.semester * 2)
+      console.log(this.numberOfFinishedExams)
     })
-    this.calculatingExams()
-  }
-
-  calculatingExams() {
-    this.enoughExams = (this.student.semester * 2) > this.numberOfFinishedExams
   }
 
   onClick() {
     this.studentService.enrollmentOnNextSemester(this.studentId).subscribe((data: Student) => {
       console.log(data)
     })
+    this.enoughExams = false
   }
 
 }

@@ -2,9 +2,9 @@ import {Student} from "./student";
 
 export class Payment {
 
-  id!: string;
+  id?: string;
   amount!: number;
-  timestamp!: Date;
+  timestamp?: Date;
   reasonForPayment!: string;
   studentDTO!: Student;
 }

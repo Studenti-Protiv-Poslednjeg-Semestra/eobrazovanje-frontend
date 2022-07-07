@@ -15,4 +15,8 @@ export class PaymentService {
   getPaymentsForStudent(studentId: number, page: number, size: number): Observable<Payment[]>{
     return this.httpClient.get<Payment[]>(`${this.baseURL}/${studentId}?page=${page}&size=${size}`);
   }
+
+  createPayment(payment: Object): Observable<Object>{
+    return this.httpClient.post<Object>(`${this.baseURL}`, payment);
+  }
 }
