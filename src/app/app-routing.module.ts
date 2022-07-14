@@ -16,8 +16,6 @@ import {EnrollmentOnNextSemesterComponent} from "./components/enrollment-on-next
 import {AddMoneyOnAccountComponent} from "./components/add-money-on-account/add-money-on-account.component";
 
 const routes: Routes = [
-  // redirect to somewhere if path is empty
-  //{ path: '', redirectTo: '', pathMatch: 'full' },
   {
     path: "subjects/add-teacher", component: AddTeachersToSubjectsComponent,
     canActivate: [AuthGuard],
@@ -126,6 +124,9 @@ const routes: Routes = [
   {
     path: "",
     component: WelcomePageComponent
+  },
+  {
+    path: '**', redirectTo: '', pathMatch: 'full'
   }
 ];
 

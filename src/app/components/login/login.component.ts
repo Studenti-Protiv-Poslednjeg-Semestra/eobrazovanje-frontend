@@ -21,6 +21,9 @@ export class LoginComponent implements OnInit {
               private authService: AuthService,
               private router: Router
   ) {
+      if (this.authService.isLoggedIn()) {
+        this.router.navigate(["/"])
+      }
   }
 
   onSubmit = async () => {
@@ -47,7 +50,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.localStorageItem("TOKEN")) {
+    if (this.authService.isLoggedIn()) {
       this.router.navigate(["/"])
     }
   }
