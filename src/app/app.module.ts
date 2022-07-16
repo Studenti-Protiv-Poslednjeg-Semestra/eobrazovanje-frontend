@@ -19,6 +19,7 @@ import { StudentAccountComponent } from './components/student-account/student-ac
 import { AllStudentsComponent } from './components/all-students/all-students.component';
 import { EnrollmentOnNextSemesterComponent } from './components/enrollment-on-next-semester/enrollment-on-next-semester.component';
 import { AddMoneyOnAccountComponent } from './components/add-money-on-account/add-money-on-account.component';
+import { PersonalInfoComponent } from './components/personal-info/personal-info.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { AddMoneyOnAccountComponent } from './components/add-money-on-account/ad
     AllStudentsComponent,
     EnrollmentOnNextSemesterComponent,
     AddMoneyOnAccountComponent,
+    PersonalInfoComponent,
   ],
   imports: [
     BrowserModule,
