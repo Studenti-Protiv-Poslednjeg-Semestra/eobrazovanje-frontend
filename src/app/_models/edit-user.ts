@@ -1,7 +1,7 @@
-export class User {
+export class EditUser {
   id!: number;
   firstName!: string;
   lastName!: string;
   email!: string;
-  ucn!: string;
+  password!: string;
 }

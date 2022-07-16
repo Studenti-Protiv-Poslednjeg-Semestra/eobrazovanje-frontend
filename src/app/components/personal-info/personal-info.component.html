@@ -1,0 +1,71 @@
+<div class="col-md-6 offset-md-3">
+  <h3> Personal information </h3>
+
+  <form (ngSubmit)="onEdit()">
+    <div class="form-group">
+      <label> UCN </label>
+      <input type="text" class="form-control" id="UCN" readonly
+             value={{UCN}} name="UCN" />
+    </div>
+
+    <div *ngIf="!editable">
+
+      <div class="form-group">
+        <label> First name </label>
+        <input type="text" class="form-control" id="firstName" readonly
+               [(ngModel)]="user.firstName" name="firstName" />
+      </div>
+
+      <div class="form-group">
+        <label> Last name </label>
+        <input type="text" class="form-control" id="lastName" readonly
+               [(ngModel)]="user.lastName" name="lastName" />
+      </div>
+
+      <div class="form-group">
+        <label> Email </label>
+        <input type="text" class="form-control" id="email" readonly
+               [(ngModel)]="user.email" name="email" />
+      </div>
+
+    </div>
+
+    <div *ngIf="editable">
+
+      <div class="form-group">
+        <label> First name </label>
+        <input type="text" class="form-control" id="firstName"
+               [(ngModel)]="user.firstName" name="firstName" />
+      </div>
+
+      <div class="form-group">
+        <label> Last name </label>
+        <input type="text" class="form-control" id="lastName"
+               [(ngModel)]="user.lastName" name="lastName" />
+      </div>
+
+      <div class="form-group">
+        <label> Email </label>
+        <input type="text" class="form-control" id="email"
+               [(ngModel)]="user.email" name="email" />
+      </div>
+
+      <div class="form-group">
+        <label> New password </label>
+        <input type="password" class="form-control" id="password"
+               [(ngModel)]="user.password" name="password" />
+      </div>
+      <div class="form-group" *ngIf="editable">
+        <label> Confirm password </label>
+        <input type="password" class="form-control" id="confirmedPassword"
+               [(ngModel)]="confirmedPassword" name="confirmedPassword" />
+      </div>
+
+      <button class="btn btn-success" type="submit">
+        Edit personal info
+      </button>
+
+    </div>
+
+  </form>
+</div>
