@@ -9,12 +9,28 @@ import { ViewExamComponent } from './components/view-exam/view-exam.component';
 import { AuthGuard } from './_helpers/auth.guard';
 import {AddTeachersToSubjectsComponent} from "./components/add-teachers-to-subjects/add-teachers-to-subjects.component";
 import {WelcomePageComponent} from "./components/welcome-page/welcome-page.component";
+import {CreateSubjectComponent} from "./components/create-subject/create-subject.component";
+import {CreateSyllabusComponent} from "./components/create-syllabus/create-syllabus.component";
 
 const routes: Routes = [
   // redirect to somewhere if path is empty
   //{ path: '', redirectTo: '', pathMatch: 'full' },
   {
     path: "subjects/add-teacher", component: AddTeachersToSubjectsComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ["ROLE_ADMIN"]
+    }
+  },
+  {
+    path: "subjects/create", component: CreateSubjectComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ["ROLE_ADMIN"]
+    }
+  },
+  {
+    path: "syllabi/create", component: CreateSyllabusComponent,
     canActivate: [AuthGuard],
     data: {
       role: ["ROLE_ADMIN"]

@@ -14,7 +14,11 @@ import { CreateExamScheduleComponent } from './components/create-exam-schedule/c
 import { CreateExamApplicationComponent } from './components/create-exam-application/create-exam-application.component';
 import { AddTeachersToSubjectsComponent } from './components/add-teachers-to-subjects/add-teachers-to-subjects.component';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
+import { CreateSubjectComponent } from './components/create-subject/create-subject.component';
+import { CreateSyllabusComponent } from './components/create-syllabus/create-syllabus.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { NgbdDropdownForm } from './dropdown-form';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,8 @@ import { WelcomePageComponent } from './components/welcome-page/welcome-page.com
     CreateExamApplicationComponent,
     AddTeachersToSubjectsComponent,
     WelcomePageComponent,
+    CreateSubjectComponent,
+    CreateSyllabusComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +40,9 @@ import { WelcomePageComponent } from './components/welcome-page/welcome-page.com
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    BrowserModule,
+    NgbModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
