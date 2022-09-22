@@ -14,6 +14,7 @@ import {StudentAccountComponent} from "./components/student-account/student-acco
 import {AllStudentsComponent} from "./components/all-students/all-students.component";
 import {EnrollmentOnNextSemesterComponent} from "./components/enrollment-on-next-semester/enrollment-on-next-semester.component";
 import {AddMoneyOnAccountComponent} from "./components/add-money-on-account/add-money-on-account.component";
+import {RegisterTeacherComponent} from "./components/register-teacher/register-teacher.component";
 import { PersonalInfoComponent } from './components/personal-info/personal-info.component';
 
 const routes: Routes = [
@@ -116,6 +117,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       role: 'ROLE_ADMIN'
+    }
+  },
+  {
+    path: "teachers/create", component: RegisterTeacherComponent,
+    canActivate: [AuthGuard],
+    pathMatch: "full",
+    data: {
+      role: ['ROLE_ADMIN']
     }
   },
   {
