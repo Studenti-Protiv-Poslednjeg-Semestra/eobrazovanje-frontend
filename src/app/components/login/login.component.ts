@@ -21,6 +21,9 @@ export class LoginComponent implements OnInit {
               private authService: AuthService,
               private router: Router
   ) {
+      if (this.authService.isLoggedIn()) {
+        this.router.navigate(["/"])
+      }
   }
 
   onSubmit = async () => {
@@ -29,10 +32,10 @@ export class LoginComponent implements OnInit {
 
         const decoded_token = this.tokenService.decodeToken(data.jwt);
         if (decoded_token) {
+          this.authService.login(data.jwt, decoded_token.authorities[0].name);
           console.log("JWT: " + data.jwt);
           console.log("ROLE: " + localStorage.getItem('ROLE'));
 
-          this.authService.login(data.jwt, decoded_token.authorities[0].name);
           this.router.navigate(["/"])
 
         } else {
@@ -47,7 +50,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.localStorageItem("TOKEN")) {
+    if (this.authService.isLoggedIn()) {
       this.router.navigate(["/"])
     }
   }

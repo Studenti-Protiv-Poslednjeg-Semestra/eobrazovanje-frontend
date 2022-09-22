@@ -15,10 +15,9 @@ import {AllStudentsComponent} from "./components/all-students/all-students.compo
 import {EnrollmentOnNextSemesterComponent} from "./components/enrollment-on-next-semester/enrollment-on-next-semester.component";
 import {AddMoneyOnAccountComponent} from "./components/add-money-on-account/add-money-on-account.component";
 import {RegisterTeacherComponent} from "./components/register-teacher/register-teacher.component";
+import { PersonalInfoComponent } from './components/personal-info/personal-info.component';
 
 const routes: Routes = [
-  // redirect to somewhere if path is empty
-  //{ path: '', redirectTo: '', pathMatch: 'full' },
   {
     path: "subjects/add-teacher", component: AddTeachersToSubjectsComponent,
     canActivate: [AuthGuard],
@@ -129,12 +128,22 @@ const routes: Routes = [
     }
   },
   {
+    path: 'personal-info', component: PersonalInfoComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ['ROLE_ADMIN', 'ROLE_TEACHER', 'ROLE_STUDENT']
+    }
+  },
+  {
     path: "login",
     component: LoginComponent
   },
   {
     path: "",
     component: WelcomePageComponent
+  },
+  {
+    path: '**', redirectTo: '', pathMatch: 'full'
   }
 ];
 

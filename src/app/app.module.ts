@@ -19,6 +19,7 @@ import { StudentAccountComponent } from './components/student-account/student-ac
 import { AllStudentsComponent } from './components/all-students/all-students.component';
 import { EnrollmentOnNextSemesterComponent } from './components/enrollment-on-next-semester/enrollment-on-next-semester.component';
 import { AddMoneyOnAccountComponent } from './components/add-money-on-account/add-money-on-account.component';
+import { PersonalInfoComponent } from './components/personal-info/personal-info.component';
 import { RegisterTeacherComponent } from './components/register-teacher/register-teacher.component';
 
 
@@ -39,6 +40,7 @@ import { RegisterTeacherComponent } from './components/register-teacher/register
     EnrollmentOnNextSemesterComponent,
     AddMoneyOnAccountComponent,
     RegisterTeacherComponent,
+    PersonalInfoComponent,
   ],
   imports: [
     BrowserModule,
