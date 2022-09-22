@@ -16,6 +16,10 @@ export class TeacherService {
     return this.http.get<Teacher[]>(`${this.api}?page=${page}`)
   }
 
+  saveTeacher(teacher: Teacher): Observable<Teacher>{
+    return this.http.post<Teacher>(`${this.api}`, teacher)
+  }
+
   addProfessorOnSubject(professorOnSubject: Object): Observable<Teacher>{
     return this.http.put<Teacher>(`${this.api}/professor/subjects`, professorOnSubject)
   }
