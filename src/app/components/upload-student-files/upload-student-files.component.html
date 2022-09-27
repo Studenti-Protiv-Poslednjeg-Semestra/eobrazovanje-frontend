@@ -1,0 +1,26 @@
+<div class="col-md-5 offset-md-3">
+  <h2>Student Files</h2>
+  <form #payloadForm="ngForm" (ngSubmit)="onSubmit(payloadForm)">
+    <input style="width: 300px;" name="major" type="text" class="form-control"
+           [(ngModel)]="selectedStudent"
+           [ngbTypeahead]="search"
+           [inputFormatter]="formatter"
+           [resultFormatter]="formatter"
+           [editable]='false' />
+    <br>
+    <div>
+      <label for="file">Choose File</label>
+      <input type="file"
+             id="file"
+             (change)="handleFileInput($event)">
+    </div>
+
+    <button class="btn btn-success" type="submit">Upload</button>
+    <p *ngIf="resultMsg != ''">{{resultMsg}}</p>
+  </form>
+
+
+
+
+</div>
+
