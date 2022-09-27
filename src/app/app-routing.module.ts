@@ -11,6 +11,7 @@ import {AddTeachersToSubjectsComponent} from "./components/add-teachers-to-subje
 import {WelcomePageComponent} from "./components/welcome-page/welcome-page.component";
 import {CreateSubjectComponent} from "./components/create-subject/create-subject.component";
 import {CreateSyllabusComponent} from "./components/create-syllabus/create-syllabus.component";
+import {UploadStudentFilesComponent} from "./components/upload-student-files/upload-student-files.component";
 
 const routes: Routes = [
   // redirect to somewhere if path is empty
@@ -31,6 +32,13 @@ const routes: Routes = [
   },
   {
     path: "syllabi/create", component: CreateSyllabusComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ["ROLE_ADMIN"]
+    }
+  },
+  {
+    path: "students/upload-files", component: UploadStudentFilesComponent,
     canActivate: [AuthGuard],
     data: {
       role: ["ROLE_ADMIN"]

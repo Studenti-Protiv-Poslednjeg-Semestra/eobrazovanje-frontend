@@ -26,7 +26,20 @@ export class SubjectService {
   }
 
   createSubject(subjectCreationDto: SubjectCreationDto): Observable<HttpResponse<any>> {
-    return this.httpClient.post<any>(`${this.baseURL}`, subjectCreationDto, { observe: 'response'});
+    return this.httpClient.post<any>(`${this.baseURL}`,
+      subjectCreationDto,
+      { observe: 'response'});
+  }
+
+  deleteSubject(subjectId: number): Observable<HttpResponse<any>> {
+    return this.httpClient
+      .delete(`${this.baseURL}/${subjectId}`,
+        {observe: 'response'});
+  }
+
+  getResponsibilities(): Observable<String[]> {
+    return this.httpClient
+      .get<String[]>(`${this.baseURL}/responsibilities`);
   }
 
 }

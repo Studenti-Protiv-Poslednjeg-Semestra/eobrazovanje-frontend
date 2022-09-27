@@ -17,8 +17,7 @@ import { WelcomePageComponent } from './components/welcome-page/welcome-page.com
 import { CreateSubjectComponent } from './components/create-subject/create-subject.component';
 import { CreateSyllabusComponent } from './components/create-syllabus/create-syllabus.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
-import { NgbdDropdownForm } from './dropdown-form';
+import { UploadStudentFilesComponent } from './components/upload-student-files/upload-student-files.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +32,7 @@ import { NgbdDropdownForm } from './dropdown-form';
     WelcomePageComponent,
     CreateSubjectComponent,
     CreateSyllabusComponent,
+    UploadStudentFilesComponent,
   ],
   imports: [
     BrowserModule,

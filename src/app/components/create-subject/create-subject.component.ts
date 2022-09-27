@@ -18,6 +18,7 @@ export class CreateSubjectComponent implements OnInit {
   resultMsg: string = '';
   selectedSemesterRemainingECTS: number = 0;
   subjectValidSemesterRange : number[] = [];
+  responsibilityTypes: String[] = [];
   createdSubject: SubjectCreationDto = new SubjectCreationDto();
 
   constructor(
@@ -25,12 +26,15 @@ export class CreateSubjectComponent implements OnInit {
     private subjectService: SubjectService,
   ) { }
 
-
   ngOnInit(): void {
     this.syllabusService.getAllSyllabi().subscribe({
       next: (v) => this.syllabi = v,
       error: (e) => console.log(e),
       complete: () => console.log("done getting syllabi")
+    })
+
+    this.subjectService.getResponsibilities().subscribe({
+      next: (v) => this.responsibilityTypes = v
     })
   }
 
@@ -206,6 +210,16 @@ export class CreateSubjectComponent implements OnInit {
     let descriptionInput: HTMLInputElement = document.getElementById("description-input") as HTMLInputElement;
     descriptionInput.value = descriptionInput.defaultValue;
     this.createdSubject.description = '';
+  }
+
+  addResponsibilityToSubject(responsibility: HTMLSelectElement) {
+    console.log("CHANGE!")
+    this.createdSubject.responsibilityDefinitions.push(responsibility.value)
+    responsibility.selectedIndex = 0;
+  }
+
+  removeResponsibility(responsibility: String) {
+    this.createdSubject.responsibilityDefinitions = this.createdSubject.responsibilityDefinitions.filter(r => r !== responsibility);
   }
 
 }

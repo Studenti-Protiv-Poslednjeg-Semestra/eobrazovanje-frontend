@@ -5,4 +5,5 @@ export class SubjectCreationDto {
   description!: string;
   ects!: number;
   syllabusId!: number;
+  responsibilityDefinitions: String[] = [];
 }

@@ -3,5 +3,5 @@ export class User {
   firstName!: string;
   lastName!: string;
   email!: string;
-  UCN!: string;
+  ucn!: string;
 }
