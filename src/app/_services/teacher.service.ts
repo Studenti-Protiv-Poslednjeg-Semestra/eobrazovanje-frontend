@@ -16,6 +16,10 @@ export class TeacherService {
     return this.http.get<Teacher[]>(`${this.api}?page=${page}`)
   }
 
+  getTeachersByPageAndSize(page: number, itemsPerPage: number): Observable<Teacher[]> {
+    return this.http.get<Teacher[]>(`${this.api}/page?page=${page}&itemsPerPage=${itemsPerPage}`)
+  }
+
   saveTeacher(teacher: Teacher): Observable<Teacher>{
     return this.http.post<Teacher>(`${this.api}`, teacher)
   }
