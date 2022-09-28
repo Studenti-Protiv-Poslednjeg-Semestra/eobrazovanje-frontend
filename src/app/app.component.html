@@ -19,6 +19,9 @@
       <a routerLink="payments" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">View payments</a>
     </li>
     <li class="nav-item" *ngIf="localStorageItem('TOKEN') && localStorageItem('STATE') && localStorageItem('ROLE') == 'ROLE_STUDENT'">
+      <a routerLink="enrollments" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">View enrollments</a>
+    </li>
+    <li class="nav-item" *ngIf="localStorageItem('TOKEN') && localStorageItem('STATE') && localStorageItem('ROLE') == 'ROLE_STUDENT'">
       <a routerLink="enrollment" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">Enrollment next semester</a>
     </li>
     <li class="nav-item" *ngIf="localStorageItem('TOKEN') && localStorageItem('STATE') && localStorageItem('ROLE') == 'ROLE_STUDENT'">
@@ -53,6 +56,9 @@
     </li>
     <li class="nav-item" *ngIf="localStorageItem('TOKEN') && localStorageItem('STATE') && localStorageItem('ROLE') == 'ROLE_ADMIN'">
       <a routerLink="syllabi/create" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">Create syllabus</a>
+    </li>
+    <li class="nav-item" *ngIf="localStorageItem('TOKEN') && localStorageItem('STATE') && localStorageItem('ROLE') == 'ROLE_ADMIN'">
+      <a routerLink="majors/create" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">Create major</a>
     </li>
     <li class="nav-item" *ngIf="localStorageItem('TOKEN') && localStorageItem('STATE') && localStorageItem('ROLE') == 'ROLE_ADMIN'">
       <a routerLink="students/upload-files" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">Upload Student Files</a>

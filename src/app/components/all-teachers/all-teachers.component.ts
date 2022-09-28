@@ -40,7 +40,6 @@ export class AllTeachersComponent implements OnInit {
 
   getTeachers(page: number) {
     this.teacherService.getTeachersByPageAndSize(page, this.itemsPerPage).subscribe((data: any) => {
-      console.log(data)
       data ? this.teachers = data.content : this.resultMessage = "Something went wrong"
       this.totalElements = data.content.size
       if(this.totalElements == 0) {

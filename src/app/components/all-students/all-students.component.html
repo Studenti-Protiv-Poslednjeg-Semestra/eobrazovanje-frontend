@@ -21,6 +21,7 @@
       <th>Semester</th>
       <th>Funds</th>
       <th></th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
@@ -36,6 +37,11 @@
       <td>
         <button class="btn btn-info" (click)="onClickStudentPayments(student.userDTO.id)">
           View payments
+        </button>
+      </td>
+      <td>
+        <button class="btn btn-info" (click)="onClickStudentEnrollments(student.userDTO.id)">
+          View enrollments
         </button>
       </td>
     </tr>
