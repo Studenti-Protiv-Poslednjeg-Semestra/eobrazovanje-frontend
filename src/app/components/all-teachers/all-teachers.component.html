@@ -1,0 +1,45 @@
+<div class="container-fluid" style="margin-top: 50px">
+  <h2 class="text-center">Teachers</h2>
+  <div id="pagination">
+    <pagination-controls (pageChange)="onChangePage($event)"></pagination-controls>
+  </div>
+  <div id="pageSize">
+    Items per page
+    <select>
+      <option (click)="onPageSizeChange(pageSize.size)" *ngFor="let pageSize of pageSizes" [ngValue]="pageSize.id">
+        {{pageSize.size}}
+      </option>
+    </select>
+  </div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>UCN</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Professor on</th>
+      <th>Assistant on</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let teacher of teachers | paginate: {itemsPerPage: itemsPerPage,
+                                                      currentPage: currentPage,
+                                                      totalItems: totalElements}">
+      <td>{{teacher.userDTO.ucn}}</td>
+      <td>{{teacher.userDTO.firstName}}</td>
+      <td>{{teacher.userDTO.lastName}}</td>
+      <td>
+        <ul *ngFor="let subject of teacher.professorOn">
+          {{subject.name}}
+        </ul>
+      </td>
+      <td>
+        <ul *ngFor="let subject of teacher.assistantOn">
+          {{subject.name}}
+        </ul>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <p>{{resultMessage}}</p>
+</div>
