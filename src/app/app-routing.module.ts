@@ -21,6 +21,7 @@ import {CreateSubjectComponent} from "./components/create-subject/create-subject
 import {CreateSyllabusComponent} from "./components/create-syllabus/create-syllabus.component";
 import {UploadStudentFilesComponent} from "./components/upload-student-files/upload-student-files.component";
 import {AllTeachersComponent} from "./components/all-teachers/all-teachers.component";
+import {CreateMajorComponent} from "./components/create-major/create-major.component";
 
 const routes: Routes = [
   {
@@ -163,6 +164,14 @@ const routes: Routes = [
   },
   {
     path: "students/create", component: RegisterStudentComponent,
+    canActivate: [AuthGuard],
+    pathMatch: "full",
+    data: {
+      role: ['ROLE_ADMIN']
+    }
+  },
+  {
+    path: "majors/create", component: CreateMajorComponent,
     canActivate: [AuthGuard],
     pathMatch: "full",
     data: {

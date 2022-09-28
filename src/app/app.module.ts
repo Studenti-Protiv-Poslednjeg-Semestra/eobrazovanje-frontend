@@ -28,6 +28,7 @@ import { CreateSyllabusComponent } from './components/create-syllabus/create-syl
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UploadStudentFilesComponent } from './components/upload-student-files/upload-student-files.component';
 import { AllTeachersComponent } from './components/all-teachers/all-teachers.component';
+import { CreateMajorComponent } from './components/create-major/create-major.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { AllTeachersComponent } from './components/all-teachers/all-teachers.com
     CreateSyllabusComponent,
     UploadStudentFilesComponent,
     AllTeachersComponent,
+    CreateMajorComponent,
   ],
   imports: [
     BrowserModule,

@@ -15,4 +15,8 @@ export class MajorService {
     return this.httpClient.get<Major[]>(`${this.baseURL}`);
   }
 
+  createMajor(major: any): Observable<any> {
+    return this.httpClient.post<any>(`${this.baseURL}`, major)
+  }
+
 }
