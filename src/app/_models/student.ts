@@ -5,5 +5,5 @@ export class Student {
   userDTO: User = new User();
   funds!: number;
   semester!: number;
-  majorDTO: Major = new Major();
+  majorDTO?: Major = new Major();
 }

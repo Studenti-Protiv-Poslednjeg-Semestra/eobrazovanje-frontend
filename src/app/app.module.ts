@@ -21,6 +21,7 @@ import { EnrollmentOnNextSemesterComponent } from './components/enrollment-on-ne
 import { AddMoneyOnAccountComponent } from './components/add-money-on-account/add-money-on-account.component';
 import { PersonalInfoComponent } from './components/personal-info/personal-info.component';
 import { RegisterTeacherComponent } from './components/register-teacher/register-teacher.component';
+import { RegisterStudentComponent } from './components/register-student/register-student.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { RegisterTeacherComponent } from './components/register-teacher/register
     AddMoneyOnAccountComponent,
     RegisterTeacherComponent,
     PersonalInfoComponent,
+    RegisterStudentComponent,
   ],
   imports: [
     BrowserModule,
