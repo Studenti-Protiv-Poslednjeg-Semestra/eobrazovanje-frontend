@@ -60,4 +60,7 @@ export class AllStudentsComponent implements OnInit {
     this.router.navigate([`payments/${studentId}`])
   }
 
+  onClickStudentEnrollments(studentId: number) {
+    this.router.navigate([`enrollments/${studentId}`])
+  }
 }

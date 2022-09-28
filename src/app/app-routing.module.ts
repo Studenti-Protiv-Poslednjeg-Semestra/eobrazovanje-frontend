@@ -22,6 +22,7 @@ import {CreateSyllabusComponent} from "./components/create-syllabus/create-sylla
 import {UploadStudentFilesComponent} from "./components/upload-student-files/upload-student-files.component";
 import {CreateMajorComponent} from "./components/create-major/create-major.component";
 import {AllTeachersComponent} from "./components/all-teachers/all-teachers.component";
+import {ViewEnrollmentsComponent} from "./components/view-enrollments/view-enrollments.component";
 
 const routes: Routes = [
   {
@@ -92,6 +93,20 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       role: ["ROLE_STUDENT"]
+    }
+  },
+  {
+    path: "enrollments", component: ViewEnrollmentsComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ["ROLE_STUDENT"]
+    }
+  },
+  {
+    path: "enrollments/:studentId", component: ViewEnrollmentsComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ["ROLE_ADMIN"]
     }
   },
   {
