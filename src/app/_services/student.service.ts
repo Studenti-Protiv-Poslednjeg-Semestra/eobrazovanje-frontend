@@ -38,4 +38,8 @@ export class StudentService {
   getNumberOfFinishedExams(studentId: number): Observable<Object>{
     return this.httpClient.get<Object>(`${this.baseURL}/${studentId}/finished-exams`)
   }
+
+  createStudent(student: Student): Observable<Object>{
+    return this.httpClient.post<Object>(`${this.baseURL}`, student)
+  }
 }
