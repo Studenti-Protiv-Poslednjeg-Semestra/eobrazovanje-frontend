@@ -1,0 +1,108 @@
+<div class="col-md-5 offset-md-3">
+  <h2>Subject Creation</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div id="syllabus">
+      Subject Syllabus
+      <br/>
+      <select id="syllabus-select" name="syllabus-select" [(ngModel)]="selectedSyllabus" (ngModelChange)="getSyllabusSubjects()" (change)="onChangeSyllabus($event)" >
+        <option value="0" selected disabled hidden>Choose here</option>
+        <option *ngFor="let syllabus of syllabi" [ngValue]=syllabus>
+          {{syllabus.majorDTO.name}} {{syllabus.yearOfCreation}}
+        </option>
+      </select>
+      <button (click)="print()">Test</button>
+    </div>
+
+    <div *ngIf="syllabusSubjects.length" id="subjects">
+      Syllabus subjects
+      <br />
+      <select size="5" style="width: 500px; ">
+        <option *ngFor="let subject of syllabusSubjects" >
+          Subject Name - '{{subject.name}}',
+          Semester - '{{subject.semester}}'
+        </option>
+      </select>
+    </div>
+
+    <div *ngIf="selectedSyllabus" id="semester" (change)="onChangeSemester($event)">
+      Semester
+      <br />
+      <select id="semester-select" style="width: 500px;">
+        <option value="" selected disabled hidden>Choose here</option>
+        <option *ngFor='let i of createValidSemesterOption()' >
+          {{i}}
+        </option>
+      </select>
+    </div>
+
+
+    <div id="name">
+      Subject Name
+      <br/>
+      <input id="name-input" type="text" (input)="onChangeName($event)">
+    </div>
+
+    <div id="code">
+      Subject Code
+      <br/>
+      <input id="code-input" type="text" (input)="onChangeCode($event)">
+    </div>
+
+    <div id="description">
+      Subject Description
+      <br/>
+      <textarea id="description-input" (input)="onChangeDescription($event)">
+
+      </textarea>
+    </div>
+
+    <div id="responsibilities">
+      Subject Responsibilities
+      <br />
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Responsibility Type</th>
+          <th>Remove</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let responsibility of createdSubject.responsibilityDefinitions">
+          <td>{{responsibility}}</td>
+          <td><button class="btn btn-danger" (click)="removeResponsibility(responsibility)">X</button></td>
+        </tr>
+        <tr>
+          <td>
+            <select #res style="width: 500px;" (change)="addResponsibilityToSubject(res)">
+              <option disabled selected>Pick Responsibility Type</option>
+              <option *ngFor="let resp of responsibilityTypes">
+                {{resp}}
+              </option>
+            </select>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+
+    <div id="ects">
+      Subject ECTS-s
+      <br/>
+      <input id="ects-input"
+             type="number"
+             min="1"
+             max="{{selectedSemesterRemainingECTS}}"
+             (input)="onChangeECTS($event)"
+             oninput="validity.valid||(value='');">
+    </div>
+    <br>
+<!--    <b *ngIf="selectedSyllabus != null">Remaining ECTS-s in the Syllabus: </b><i>{{ECTS}}</i>-->
+    <button  class="btn btn-primary col-md-12" type="submit">Save</button>
+
+  </form>
+
+  <div id="resultMsg">{{resultMsg}}</div>
+
+</div>

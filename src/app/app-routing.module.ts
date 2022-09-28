@@ -17,10 +17,34 @@ import {AddMoneyOnAccountComponent} from "./components/add-money-on-account/add-
 import {RegisterTeacherComponent} from "./components/register-teacher/register-teacher.component";
 import { PersonalInfoComponent } from './components/personal-info/personal-info.component';
 import {RegisterStudentComponent} from "./components/register-student/register-student.component";
+import {CreateSubjectComponent} from "./components/create-subject/create-subject.component";
+import {CreateSyllabusComponent} from "./components/create-syllabus/create-syllabus.component";
+import {UploadStudentFilesComponent} from "./components/upload-student-files/upload-student-files.component";
 
 const routes: Routes = [
   {
     path: "subjects/add-teacher", component: AddTeachersToSubjectsComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ["ROLE_ADMIN"]
+    }
+  },
+  {
+    path: "subjects/create", component: CreateSubjectComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ["ROLE_ADMIN"]
+    }
+  },
+  {
+    path: "syllabi/create", component: CreateSyllabusComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ["ROLE_ADMIN"]
+    }
+  },
+  {
+    path: "students/upload-files", component: UploadStudentFilesComponent,
     canActivate: [AuthGuard],
     data: {
       role: ["ROLE_ADMIN"]

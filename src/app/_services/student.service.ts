@@ -23,6 +23,14 @@ export class StudentService {
     return this.httpClient.get<Student>(`${this.baseURL}/${id}`);
   }
 
+  uploadStudentFile(uploadPayload: [File, number]): Observable<any> {
+    const formData = new FormData();
+    formData.append("file", uploadPayload[0], uploadPayload[0].name);
+    formData.append("userId", uploadPayload[1].toString());
+    return this.httpClient
+      .post<any>("http://localhost:8080/api/v1/files/users", formData);
+  }
+
   getNewStudents(): Observable<Student[]> {
     return this.httpClient.get<Student[]>(`${this.baseURL}/new`);
   }

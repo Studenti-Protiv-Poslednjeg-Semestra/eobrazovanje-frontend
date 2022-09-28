@@ -23,6 +23,10 @@ import { PersonalInfoComponent } from './components/personal-info/personal-info.
 import { RegisterTeacherComponent } from './components/register-teacher/register-teacher.component';
 import { RegisterStudentComponent } from './components/register-student/register-student.component';
 
+import { CreateSubjectComponent } from './components/create-subject/create-subject.component';
+import { CreateSyllabusComponent } from './components/create-syllabus/create-syllabus.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UploadStudentFilesComponent } from './components/upload-student-files/upload-student-files.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,9 @@ import { RegisterStudentComponent } from './components/register-student/register
     RegisterTeacherComponent,
     PersonalInfoComponent,
     RegisterStudentComponent,
+    CreateSubjectComponent,
+    CreateSyllabusComponent,
+    UploadStudentFilesComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +57,9 @@ import { RegisterStudentComponent } from './components/register-student/register
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    BrowserModule,
+    NgbModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

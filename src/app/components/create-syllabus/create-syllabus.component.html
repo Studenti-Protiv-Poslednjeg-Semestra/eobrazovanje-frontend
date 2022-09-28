@@ -1,0 +1,80 @@
+<div class="col-md-5 offset-md-3">
+  <h2>Syllabus Creation</h2>
+  <div class="row">
+    <div class="col">
+      <div ngbDropdown class="d-inline-block" [autoClose]="'outside'">
+        <button type="button" class="btn btn-outline-primary" id="dropdownForm1" ngbDropdownToggle>Create New</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownForm1">
+          <form #newSyllabusForm="ngForm" id="newSyllabusForm" class="px-4 py-3" (ngSubmit)="onSubmitNewSyllabus(newSyllabusForm)">
+            <div class="mb-3">
+              <label for="mayor">Mayor</label>
+              <input style="width: 300px;" name="major" type="text" class="form-control"
+                     [(ngModel)]="selectedMajor"
+                     [ngbTypeahead]="search"
+                     [inputFormatter]="formatter"
+                     [resultFormatter]="formatter"
+                     (ngModelChange)="setMajorCreationId()"
+                     [editable]='false' />
+            </div>
+            <div class="mb-3">
+              <label> Major Year </label>
+              <input type="date" class="form-control"
+                     id="date" name="date" [(ngModel)]="createdSyllabus.yearOfCreation"/>
+            </div>
+            <button class="btn btn-success" type="submit">Create</button>
+          </form>
+          <div class="dropdown-divider"></div>
+          <p *ngIf="resultMsg != ''">{{resultMsg}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <p *ngIf="resultMsgExisting != ''">{{resultMsgExisting}}</p>
+    <input style="width: 300px;" name="major" id="mayor" type="text" class="form-control"
+           [(ngModel)]="selectedMajor"
+           [ngbTypeahead]="search"
+           [inputFormatter]="formatter"
+           [resultFormatter]="formatter"
+           (selectItem)="getSelectedMajorSyllabi()"
+           (ngModelChange)="getSelectedMajorSyllabi()"
+
+           [editable]='false' />
+    <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" (panelChange)="panelChange($event)">
+
+      <ngb-panel *ngFor="let syllabus of selectedMajorSyllabi" title="{{syllabus.yearOfCreation}}" id="{{syllabus.id}}" >
+        <ng-template ngbPanelHeader let-opened="opened">
+          <div class="accordion-button custom-header justify-content-between" [class.collapsed]="!opened">
+
+            <p class="m-0">{{syllabus.yearOfCreation}}</p>
+            <div>
+              <button ngbPanelToggle class="btn btn-sm btn-outline-primary ms-2">Show Syllabus</button>
+              <button class="btn btn-danger" style="margin-left: 10px;" (click)="deleteSyllabus(syllabus.id)">Delete</button>
+            </div>
+          </div>
+
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Semester</th>
+              <th>ECTS</th>
+              <th>Remove</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let subject of selectedSyllabusSubjects">
+              <td>{{subject.name}}</td>
+              <td>{{subject.semester}}</td>
+              <td>{{subject.ects}}</td>
+              <td><button class="btn btn-danger" (click)="deleteSubject(subject.id)">Delete</button></td>
+            </tr>
+            </tbody>
+          </table>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </div>
+</div>
